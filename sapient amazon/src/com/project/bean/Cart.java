@@ -1,6 +1,6 @@
 package com.project.bean;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Cart {
 	private int customerId;
@@ -13,41 +13,44 @@ public class Cart {
 	}
 	
 	public Cart(int customerId, int productId, int quantity, Date cartDate) {
+		super();
 		this.customerId = customerId;
 		this.productId = productId;
 		this.quantity = quantity;
 		this.cartDate = cartDate;
 	}
 
-	public int getCust_id() {
+	public int getCustomerId() {
 		return customerId;
 	}
 
-	public void setCust_id(int customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
-	public int getP_id() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setP_id(int productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-	public int getP_qty() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setP_qty(int quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public Date getCartdate() {
+	public Date getCartDate() {
 		return cartDate;
 	}
 
-	public void setCartdate(Date cartDate) {
+	public void setCartDate(Date cartDate) {
 		this.cartDate = cartDate;
 	}
+	
+	
 }

@@ -41,9 +41,12 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	
 	@Override
-	public boolean validation(int email, String password) throws ClassNotFoundException, SQLException{
+	public boolean validation(String email, String password) throws ClassNotFoundException, SQLException{
 		
 		pstmt = connection.prepareStatement("SELECT * FROM CUSTOMER_INFO WHERE EMAIL=? AND PASSWORD=?");
+		pstmt.setString(1, email);
+		pstmt.setString(2, password);
+		
 		int row = pstmt.executeUpdate();
 		 connection.close();
 		 if( row>0)
