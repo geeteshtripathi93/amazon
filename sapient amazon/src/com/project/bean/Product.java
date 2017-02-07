@@ -5,10 +5,10 @@ public class Product {
 	private String p_name;
 	private String p_cat;
 	private String p_price;
-	private String p_qty;
+	private int p_qty;
 	private String p_disc;
 	
-	public Product(int p_id, String p_name, String p_cat, String p_price, String p_qty, String p_disc) {
+	public Product(int p_id, String p_name, String p_cat, String p_price, int p_qty, String p_disc) {
 		this.p_id = p_id;
 		this.p_name = p_name;
 		this.p_cat = p_cat;
@@ -49,11 +49,11 @@ public class Product {
 		this.p_price = p_price;
 	}
 
-	public String getP_qty() {
+	public int getP_qty() {
 		return p_qty;
 	}
 
-	public void setP_qty(String p_qty) {
+	public void setP_qty(int p_qty) {
 		this.p_qty = p_qty;
 	}
 
