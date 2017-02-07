@@ -1,67 +1,71 @@
 package com.project.bean;
 
 public class Product {
-	private int p_id;
-	private String p_name;
-	private String p_cat;
-	private String p_price;
-	private int p_qty;
-	private int p_disc;
+	private int productId;
+	private String Name;
+	private String category;
+	private double price;
+	private int quantity;
+	private int discount;
 	
-	public Product(int p_id, String p_name, String p_cat, String p_price, int p_qty, int p_disc) {
-		this.p_id = p_id;
-		this.p_name = p_name;
-		this.p_cat = p_cat;
-		this.p_price = p_price;
-		this.p_qty = p_qty;
-		this.p_disc = p_disc;
+	public Product(){
+		
+	}
+	
+	public Product(int productId, String Name, String category, double price, int quantity, int discount) {
+		this.productId = productId;
+		this.Name = Name;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+		this.discount = discount;
 	}
 
 	public int getP_id() {
-		return p_id;
+		return productId;
 	}
 
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
+	public void setP_id(int productId) {
+		this.productId = productId;
 	}
 
 	public String getP_name() {
-		return p_name;
+		return Name;
 	}
 
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
+	public void setP_name(String Name) {
+		this.Name = Name;
 	}
 
 	public String getP_cat() {
-		return p_cat;
+		return category;
 	}
 
-	public void setP_cat(String p_cat) {
-		this.p_cat = p_cat;
+	public void setP_cat(String category) {
+		this.category = category;
 	}
 
-	public String getP_price() {
-		return p_price;
+	public double getP_price() {
+		return price;
 	}
 
-	public void setP_price(String p_price) {
-		this.p_price = p_price;
+	public void setP_price(double price) {
+		this.price = price;
 	}
 
 	public int getP_qty() {
-		return p_qty;
+		return quantity;
 	}
 
-	public void setP_qty(int p_qty) {
-		this.p_qty = p_qty;
+	public void setP_qty(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public int getP_disc() {
-		return p_disc;
+		return discount;
 	}
 
-	public void setP_disc(int p_disc) {
-		this.p_disc = p_disc;
+	public void setP_disc(int discount) {
+		this.discount = discount;
 	}
 }

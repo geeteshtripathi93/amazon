@@ -1,71 +1,71 @@
 package com.project.bean;
 
 public class Customer {
-	private int cust_id;
-	private String cust_fname;
-	private String cust_lname;
-	private String cust_email;
-	private String cust_pass;
-	private String cust_phone;
+	private int customerId;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private String phoneNumber;
 	
 	public Customer(){
 		
 	}
 	 
-	public Customer (int cust_id, String cust_fname, String cust_lname, String cust_email, String cust_pass, String cust_phone) {
-		this.cust_id = cust_id;
-		this.cust_fname = cust_fname;
-		this.cust_lname = cust_lname;
-		this.cust_email = cust_email;
-		this.cust_pass = cust_pass;
-		this.cust_phone = cust_phone;
+	public Customer (int customerId, String firstName, String lastName, String email, String password, String phoneNumber) {
+		this.customerId = customerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
 	}
 
-	public int getcust_id() {
-		return cust_id;
+	public int getcustomerId() {
+		return customerId;
 	}
 
-	public void setcust_id(int cust_id) {
-		this.cust_id = cust_id;
+	public void setcustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getcust_fname() {
-		return cust_fname;
+	public String getfirstName() {
+		return firstName;
 	}
 
-	public void setcust_fname(String cust_fname) {
-		this.cust_fname = cust_fname;
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getcust_lname() {
-		return cust_lname;
+	public String getlastName() {
+		return lastName;
 	}
 
-	public void setcust_lname(String cust_lname) {
-		this.cust_lname = cust_lname;
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getcust_email() {
-		return cust_email;
+	public String getemail() {
+		return email;
 	}
 
-	public void setcust_email(String cust_email) {
-		this.cust_email = cust_email;
+	public void setemail(String email) {
+		this.email = email;
 	}
 
-	public String getcust_pass() {
-		return cust_pass;
+	public String getpassword() {
+		return password;
 	}
 
-	public void setcust_pass(String cust_pass) {
-		this.cust_pass = cust_pass;
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
-	public String getcust_phone() {
-		return cust_phone;
+	public String getphoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setcust_phone(String cust_phone) {
-		this.cust_phone = cust_phone;
+	public void setphoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 }
