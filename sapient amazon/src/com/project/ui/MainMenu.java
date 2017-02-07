@@ -7,6 +7,7 @@ public class MainMenu {
 	public void displayMenu()
 	{
 		System.out.println("WELCOME TO AMAZON");
+		
 		System.out.println("1: Sign In \n2: Sign Up \n3: Explore Category\n 4: Search\n 5: Seek Help\n 6: Exit");
 	}
 	
