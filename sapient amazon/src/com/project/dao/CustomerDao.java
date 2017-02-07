@@ -4,7 +4,7 @@ import com.project.bean.Customer;
 
 public interface CustomerDao {
 
-	boolean insert(Customer c);
+	boolean insert(Customer customer);
 	boolean validation(int id, String pass);
-	boolean update(Customer c);
+	boolean update(Customer customer);
 }
