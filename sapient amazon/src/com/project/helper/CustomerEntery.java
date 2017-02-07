@@ -17,7 +17,7 @@ public class CustomerEntery {
 		System.out.println(" Enter Password : ");
 		customer.setcust_pass(sc.next());
 		System.out.println(" Enter Phone Number : ");
-		customer.setcust_phone(sc.nextInt());
+		customer.setcust_phone(sc.next());
 	
 		
 	}
