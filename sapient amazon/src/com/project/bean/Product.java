@@ -2,7 +2,7 @@ package com.project.bean;
 
 public class Product {
 	private int productId;
-	private String Name;
+	private String name;
 	private String category;
 	private double price;
 	private int quantity;
@@ -12,9 +12,9 @@ public class Product {
 		
 	}
 	
-	public Product(int productId, String Name, String category, double price, int quantity, int discount) {
+	public Product(int productId, String name, String category, double price, int quantity, int discount) {
 		this.productId = productId;
-		this.Name = Name;
+		this.name = name;
 		this.category = category;
 		this.price = price;
 		this.quantity = quantity;
@@ -30,11 +30,11 @@ public class Product {
 	}
 
 	public String getP_name() {
-		return Name;
+		return name;
 	}
 
-	public void setP_name(String Name) {
-		this.Name = Name;
+	public void setP_name(String name) {
+		this.name = name;
 	}
 
 	public String getP_cat() {
