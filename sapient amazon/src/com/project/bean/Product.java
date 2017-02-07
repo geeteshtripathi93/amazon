@@ -21,51 +21,53 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public int getP_id() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setP_id(int productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-	public String getP_name() {
+	public String getName() {
 		return name;
 	}
 
-	public void setP_name(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getP_cat() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setP_cat(String category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public double getP_price() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setP_price(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public int getP_qty() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setP_qty(int quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public int getP_disc() {
+	public int getDiscount() {
 		return discount;
 	}
 
-	public void setP_disc(int discount) {
+	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+
+	
 }
