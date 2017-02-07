@@ -3,47 +3,51 @@ package com.project.bean;
 import java.util.Date;
 
 public class Cart {
-	private int cust_id;
-	private int p_id;
-	private int p_qty;
-	private Date cart_date;
+	private int customerId;
+	private int productId;
+	private int quantity;
+	private Date cartDate;
 	
-	public Cart(int cust_id, int p_id, int p_qty, Date cart_date) {
-		this.cust_id = cust_id;
-		this.p_id = p_id;
-		this.p_qty = p_qty;
-		this.cart_date = cart_date;
+	public Cart() {
+		
+	}
+	
+	public Cart(int customerId, int productId, int quantity, Date cartDate) {
+		this.customerId = customerId;
+		this.productId = productId;
+		this.quantity = quantity;
+		this.cartDate = cartDate;
 	}
 
 	public int getCust_id() {
-		return cust_id;
+		return customerId;
 	}
 
-	public void setCust_id(int cust_id) {
-		this.cust_id = cust_id;
+	public void setCust_id(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public int getP_id() {
-		return p_id;
+		return productId;
 	}
 
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
+	public void setP_id(int productId) {
+		this.productId = productId;
 	}
 
 	public int getP_qty() {
-		return p_qty;
+		return quantity;
 	}
 
-	public void setP_qty(int p_qty) {
-		this.p_qty = p_qty;
+	public void setP_qty(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Date getCartdate() {
-		return cart_date;
+		return cartDate;
 	}
 
-	public void setCartdate(Date cart_date) {
-		this.cart_date = cart_date;
+	public void setCartdate(Date cartDate) {
+		this.cartDate = cartDate;
 	}
 }

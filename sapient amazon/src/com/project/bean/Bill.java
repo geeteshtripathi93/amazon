@@ -3,37 +3,41 @@ package com.project.bean;
 import java.util.Date;
 
 public class Bill {
-	private int cust_id;
-	private int bill_id;
-	private Date bill_date;
+	private int customerId;
+	private int billId;
+	private Date billDate;
 	
-	public Bill(int cust_id, int bill_id, Date bill_date) {
-		this.cust_id = cust_id;
-		this.bill_id = bill_id;
-		this.bill_date = bill_date;
+	public Bill() {
+		
+	}
+	
+	public Bill(int customerId, int billId, Date billDate) {
+		this.customerId = customerId;
+		this.billId = billId;
+		this.billDate = billDate;
 	}
 
 	public int getCust_id() {
-		return cust_id;
+		return customerId;
 	}
 
-	public void setCust_id(int cust_id) {
-		this.cust_id = cust_id;
+	public void setCust_id(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public int getBill_id() {
-		return bill_id;
+		return billId;
 	}
 
-	public void setBill_id(int bill_id) {
-		this.bill_id = bill_id;
+	public void setBill_id(int billId) {
+		this.billId = billId;
 	}
 
 	public Date getBill_date() {
-		return bill_date;
+		return billDate;
 	}
 
-	public void setBill_date(Date bill_date) {
-		this.bill_date = bill_date;
+	public void setBill_date(Date billDate) {
+		this.billDate = billDate;
 	}
 }
