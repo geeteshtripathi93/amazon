@@ -8,6 +8,10 @@ public class Customer {
 	private String cust_pass;
 	private String cust_phone;
 	
+	public Customer(){
+		
+	}
+	 
 	public Customer (int cust_id, String cust_fname, String cust_lname, String cust_email, String cust_pass, String cust_phone) {
 		this.cust_id = cust_id;
 		this.cust_fname = cust_fname;
