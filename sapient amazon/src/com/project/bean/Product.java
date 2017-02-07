@@ -6,9 +6,9 @@ public class Product {
 	private String p_cat;
 	private String p_price;
 	private int p_qty;
-	private String p_disc;
+	private int p_disc;
 	
-	public Product(int p_id, String p_name, String p_cat, String p_price, int p_qty, String p_disc) {
+	public Product(int p_id, String p_name, String p_cat, String p_price, int p_qty, int p_disc) {
 		this.p_id = p_id;
 		this.p_name = p_name;
 		this.p_cat = p_cat;
@@ -57,11 +57,11 @@ public class Product {
 		this.p_qty = p_qty;
 	}
 
-	public String getP_disc() {
+	public int getP_disc() {
 		return p_disc;
 	}
 
-	public void setP_disc(String p_disc) {
+	public void setP_disc(int p_disc) {
 		this.p_disc = p_disc;
 	}
 }
