@@ -1,8 +1,10 @@
 package com.project.dao;
 
+import com.project.bean.Customer;
+
 public interface CustomerDao {
 
-	boolean insert(Customer c);
-	boolean validation(int id, String pass);
-	boolean update(Cusomer c)
+	boolean insert(Customer customer);
+	boolean validation(int id, String password);
+	boolean update(Customer customer);
 }

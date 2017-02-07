@@ -5,21 +5,21 @@ import java.util.Scanner;
 import com.project.bean.Customer;
 public class CustomerEntery {
 	
-	Customer customer = new Customer();
+	 private Customer customer = new Customer();
 	
-	public void input(){
+	public Customer input(){
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter First Name : ");
-		customer.setcust_fname(sc.next());
+		customer.setfirstName(sc.next());
 		System.out.println("Enter Last Name : ");
-		customer.setcust_lname(sc.next());
-//		System.out.println(" Enter id : ");
+		customer.setlastName(sc.next());
+		System.out.println(" Enter Email Id : ");
+		customer.setemail(sc.next());
 		System.out.println(" Enter Password : ");
-		customer.setcust_pass(sc.next());
+		customer.setpassword(sc.next());
 		System.out.println(" Enter Phone Number : ");
-		customer.setcust_phone(sc.next());
-	
-		
+		customer.setphoneNumber(sc.next());
+	return customer;	
 	}
 	
 
