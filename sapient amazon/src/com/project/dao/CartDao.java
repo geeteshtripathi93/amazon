@@ -6,7 +6,7 @@ import com.project.bean.CartDetails;
 
 public interface CartDao {
 
-	boolean addToCart(Cart cart) throws ClassNotFoundException, SQLException;
+	boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException;
 	boolean removeFromCart(Cart cart)throws SQLException;
 	List<CartDetails> viewCart(int Customer_id)throws SQLException, ClassNotFoundException;
 }

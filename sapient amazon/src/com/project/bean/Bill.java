@@ -17,27 +17,27 @@ public class Bill {
 		this.billDate = billDate;
 	}
 
-	public int getCust_id() {
+	public int getCustomerId() {
 		return customerId;
 	}
 
-	public void setCust_id(int customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
-	public int getBill_id() {
+	public int getBillId() {
 		return billId;
 	}
 
-	public void setBill_id(int billId) {
+	public void setBillId(int billId) {
 		this.billId = billId;
 	}
 
-	public Date getBill_date() {
+	public Date getBillDate() {
 		return billDate;
 	}
 
-	public void setBill_date(Date billDate) {
+	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}
 }

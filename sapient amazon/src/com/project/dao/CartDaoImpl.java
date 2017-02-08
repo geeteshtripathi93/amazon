@@ -21,15 +21,21 @@ public class CartDaoImpl implements CartDao {
 	 private ResultSet rs = null;
 	 private PreparedStatement pstmt = null;
 	@Override
-	public boolean addToCart(Cart cart) throws ClassNotFoundException, SQLException {
-		
+	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException {
+		int count=0;
 		connection = createCon.getCon();
+		for(Cart cart:cartList){
+			
 		pstmt = connection.prepareStatement("INSERT INTO CART VALUES(?,?,?,?)");
 		pstmt.setInt(1, cart.getCustomerId());
 		pstmt.setInt(2, cart.getProductId());
 		pstmt.setInt(3, cart.getQuantity());
 		pstmt.setDate(4, cart.getCartDate());
-		
+		count++;
+		}
+		if(count==cartList.size())
+			return true;
+		else
 		return false;
 	}
 
@@ -51,11 +57,8 @@ public class CartDaoImpl implements CartDao {
 		} 
 
 
-	@Override
-	public boolean update(Cart cart) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	
 
 	@Override
 	public List<CartDetails> viewCart(int customerId) throws SQLException, ClassNotFoundException {
