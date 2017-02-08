@@ -19,9 +19,9 @@ public class MainMenu {
 		switch (ch) {
 		case 1:
 			System.out.println("Enter your email id/username");
-			String uName = sc.next();
+			String username = sc.next();
 			System.out.println("enter your password");
-			String pass = sc.next();
+			String password = sc.next();
 
 			break;
 		case 2:

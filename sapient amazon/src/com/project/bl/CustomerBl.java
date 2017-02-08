@@ -95,8 +95,8 @@ public class CustomerBl {
 	public boolean removeFromCart(int productId,int customerId) throws SQLException{
 		return cart.removeFromCart(productId, customerId);
 	}
-	public List<Category> viewCategory(Category category) throws SQLException{
-		return category1.viewCategory(category);
+	public List<Category> viewCategory() throws SQLException{
+		return category1.viewCategory();
 	}
 	
 	public Bill generateBill(int customerId) throws ClassNotFoundException, SQLException{
