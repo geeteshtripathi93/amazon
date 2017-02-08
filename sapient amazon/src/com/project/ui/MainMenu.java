@@ -9,7 +9,7 @@ import com.project.helper.CustomerEntry;
 
 public class MainMenu {
 	private MainMenu mainMenu = new MainMenu();
-	private Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
 	int ch;
 	private CustomerBl customerBl= new CustomerBl();
 	public void displayMenu() {
