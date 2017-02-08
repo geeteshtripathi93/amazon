@@ -25,6 +25,11 @@ public class AdminBL {
 	}	
 	
 	public boolean updatePassword(Admin admin) throws SQLException{
+		if((admin.getPassword().length()<8))
+		{
+			System.out.println("Password needs to be atleast 8 character longer");
+			return false;
+		}
 		return admin1.update(admin);
 	}
 	
