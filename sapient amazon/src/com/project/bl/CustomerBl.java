@@ -49,8 +49,25 @@ public class CustomerBl {
 		
 	}
 	
-	public void updateDetails(){
-		
+	public boolean updateDetails() throws ClassNotFoundException, SQLException{
+		Customer customer= new CustomerEntry().input();
+		if((customer.getPassword().length()<8))
+		{
+			System.out.println("Password needs to be atleast 8 character longer");
+			return false;
+		}
+		if(customer.getPhoneNumber().contains("[a-zA-Z]+") == true||customer.getPhoneNumber().length()<10){
+			System.out.println("Please check Phone Number");
+			return false;
+		}
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(customer.getEmail());
+        if(!m.matches()){
+        	System.out.println("Invalid Email ID");
+        	return false;
+        }
+        return user.update(customer);
 	}
 	
 	public void viewCategory(){
