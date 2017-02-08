@@ -23,14 +23,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		rs = statement.executeQuery("SELECT MAX(CUSTOMER_ID) FROM CUSTOMER_INFO");
 		rs.next();
 		int cId = rs.getInt(1);
-		customer.setcustomerId((cId + 1));
+		customer.setCustomerId((cId + 1));
 		pstmt = connection.prepareStatement("INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?)");
-		pstmt.setInt(1, customer.getcustomerId());
-		pstmt.setString(2, customer.getfirstName());
-		pstmt.setString(3, customer.getlastName());
-		pstmt.setString(4, customer.getemail());
-		pstmt.setString(6, customer.getpassword());
-		pstmt.setString(6, customer.getphoneNumber());
+		pstmt.setInt(1, customer.getCustomerId());
+		pstmt.setString(2, customer.getFirstName());
+		pstmt.setString(3, customer.getLastName());
+		pstmt.setString(4, customer.getEmail());
+		pstmt.setString(5, customer.getPassword());
+		pstmt.setString(6, customer.getPhoneNumber());
 		int row = pstmt.executeUpdate();
 		connection.close();
 		if (row > 0)
@@ -60,11 +60,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		pstmt = connection.prepareStatement(
 				"UPDATE CUSTOMER_INFO SET FIRST_NAME=?, LAST_NAME=?,PASSWORD=? , PHONE_NUMBER=? WHERE MAIL=?");
-		pstmt.setString(1, customer.getfirstName());
-		pstmt.setString(2, customer.getlastName());
-		pstmt.setString(3, customer.getpassword());
-		pstmt.setString(4, customer.getphoneNumber());
-		pstmt.setString(5, customer.getemail());
+		pstmt.setString(1, customer.getFirstName());
+		pstmt.setString(2, customer.getLastName());
+		pstmt.setString(3, customer.getPassword());
+		pstmt.setString(4, customer.getPhoneNumber());
+		pstmt.setString(5, customer.getEmail());
 		int row = pstmt.executeUpdate();
 		connection.close();
 		if (row > 0)
