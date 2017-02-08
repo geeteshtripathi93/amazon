@@ -44,7 +44,7 @@ public class CustomerBl {
 		
 	}	
 	
-	public boolean signUp() throws ClassNotFoundException, SQLException{
+	public boolean signUp(Customer customer) throws ClassNotFoundException, SQLException{
 		Customer customer= new CustomerEntry().input();
 		if((customer.getPassword().length()<8))
 		{
