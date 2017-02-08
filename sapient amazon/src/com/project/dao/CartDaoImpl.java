@@ -1,13 +1,16 @@
 package com.project.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.project.bean.Cart;
+import com.project.bean.CartDetails;
 import com.project.bean.Product;
 import com.project.helper.CreateConnection;
 
@@ -55,9 +58,30 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public List<Product> viewCart(int Customer_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CartDetails> viewCart(int customerId) throws SQLException, ClassNotFoundException {
+		
+		List<CartDetails> listOfItem = new LinkedList<CartDetails>();
+		connection = createCon.getCon();
+		Date date;
+		int pid, quantity, discount;
+		Statement stmt=connection.createStatement();
+		String sql = "SELECT  product_id,product_quantity,cart_date FROM CART WHERE CUSTOMER_ID="+customerId;
+		connection = createCon.getCon();
+		rs= stmt.executeQuery(sql);
+		ResultSet product = null;
+		while(rs.next()){
+			pid=(int)rs.getLong("product_id");
+			quantity=((int)(rs.getLong("product_quantity")));
+			date=rs.getDate("cart_date");  
+			product= stmt.executeQuery("select product_name, product_category,product_price,"
+			+ "product_discount from product_info where product_id="+pid);
+	   		double price = product.getDouble(3);
+	   		discount=  product.getInt(4);
+  			double totalPrice = (quantity*price)*(100-discount)/100;			
+			listOfItem.add(new CartDetails(pid, product.getString(1), price, quantity, discount, totalPrice, product.getString(2),date));
+		}
+		
+		return listOfItem;
 	}
 
 }
