@@ -10,5 +10,4 @@ Bill generateBill(int customerId);
 List<BillDetails> getBillDetails(int customerId);
 List<BillDetails> getAllBillDetails();
 
-
 }
