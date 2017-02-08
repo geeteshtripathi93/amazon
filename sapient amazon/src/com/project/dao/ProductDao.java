@@ -11,7 +11,7 @@ boolean addProduct(Product p)throws SQLException,ClassNotFoundException;
 Boolean deleteProduct(int pid)throws SQLException;
 boolean updateProduct(Product p)throws SQLException;
 List<Product> viewProduct(String category)throws SQLException;
-List<Product> searchProduct(String product)throws SQLException;
+Product searchProductByName(String product)throws SQLException;
 
 
 }

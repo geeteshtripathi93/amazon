@@ -92,9 +92,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> searchProduct(String productName) throws SQLException {
+	public Product searchProductByName(String productName) throws SQLException {
 		
-		List<Product> prodList = new ArrayList<Product>();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from product_info where product_name= " +productName );
 		while (rs.next()) {
@@ -110,10 +109,10 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCategory(category);
 			product.setPrice(productprice);
 			product.setQuantity(productquantity);
-			prodList.add(product);
+			
 		}
 		con.close();
-		return prodList;
+		return product;
 
 	}
 
