@@ -12,17 +12,26 @@ public class CategoryDaoImpl implements CategoryDao {
 	CreateConnection cd = new CreateConnection();
 	Connection con = null;
 	PreparedStatement pstmt = null;
-	public boolean viewCategory(Category category){
+	
+	
+	
+	
+	public List<Category> viewCategory(Category category){
 		
 	
-		return false;
+		return null;
 		
 	}
 
 	@Override
 	public boolean insertCategory(String categoryname)throws SQLException,ClassNotFoundException {
 		pstmt = con.prepareStatement("insert into category values(?)");
-		pstmt.setString(2, categoryname);
+		pstmt.setString(1,categoryname);
+		int rows = pstmt.executeUpdate();
+		con.close();
+		if (rows > 0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -32,11 +41,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		return false;
 	}
 
-	@Override
-	public List<Category> addCategory() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	
 	

@@ -7,10 +7,8 @@ import com.project.bean.Category;
 import com.project.bean.Product;
 
 public interface CategoryDao {
-boolean viewCategory(Category category);
+List<Category> viewCategory(Category category);
 boolean insertCategory(String categoryname)throws SQLException,ClassNotFoundException;
 boolean deleteCategory(String categoryname);
-List<Category> addCategory();
-	
 	
 }

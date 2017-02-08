@@ -36,7 +36,7 @@ public class ProductDaoImpl implements ProductDao {
 		if (rows > 0) {
 			return true;
 		}
-		// con.close();
+	
 		return false;
 	}
 
