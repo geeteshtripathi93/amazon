@@ -1,7 +1,6 @@
 package com.project.helper;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +12,7 @@ public class AddToCart {
 		 Scanner sc=new Scanner(System.in);
 		 List<Cart> cartList=new ArrayList<Cart>();
 		 do{
-			 System.out.println("Enter Choice to Add to Cart");
+			 System.out.println("Enter Choice to Add to Cart\n or 0: EXIT");
 			 int optionChosen=sc.nextInt();
 			 if(optionChosen==0)
 				 break;
@@ -23,7 +22,9 @@ public class AddToCart {
 			 System.out.println("Enter Quantity");
 			 int quantity=sc.nextInt();
 			 cart.setQuantity(quantity);
-			 cart.setCartDate(new Date());
+			 long millis=System.currentTimeMillis();  
+		        java.sql.Date date=new java.sql.Date(millis);  
+			 cart.setCartDate(date);
 	
 			 cartList.add(cart);
 		 }while(true);
