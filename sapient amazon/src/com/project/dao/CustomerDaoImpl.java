@@ -10,7 +10,8 @@ import com.project.bean.Customer;
 import com.project.helper.CreateConnection;
 
 public class CustomerDaoImpl implements CustomerDao {
-		private CreateConnection createCon = new CreateConnection();
+	
+	 private CreateConnection createCon = new CreateConnection();
 	 private Connection connection =null;
 	 private ResultSet rs = null;
 	 private PreparedStatement pstmt = null;
