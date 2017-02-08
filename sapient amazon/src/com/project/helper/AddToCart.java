@@ -1,7 +1,7 @@
 package com.project.helper;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class AddToCart {
 			 System.out.println("Enter Quantity");
 			 int quantity=sc.nextInt();
 			 cart.setQuantity(quantity);
-			 cart.setCartDate(new GregorianCalendar());
+			 cart.setCartDate(new Date());
 	
 			 cartList.add(cart);
 		 }while(true);

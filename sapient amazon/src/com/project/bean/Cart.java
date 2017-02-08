@@ -1,19 +1,18 @@
 package com.project.bean;
 
 import java.sql.Date;
-import java.util.GregorianCalendar;
 
 public class Cart {
 	private int customerId;
 	private int productId;
 	private int quantity;
-	private GregorianCalendar cartDate;
+	private java.util.Date cartDate;
 
 	public Cart() {
 
 	}
 
-	public Cart(int customerId, int productId, int quantity, GregorianCalendar cartDate) {
+	public Cart(int customerId, int productId, int quantity, java.util.Date cartDate) {
 		super();
 		this.customerId = customerId;
 		this.productId = productId;
@@ -45,12 +44,12 @@ public class Cart {
 		this.quantity = quantity;
 	}
 
-	public GregorianCalendar getCartDate() {
+	public java.util.Date getCartDate() {
 		return cartDate;
 	}
 
-	public void setCartDate(GregorianCalendar gregorianCalendar) {
-		this.cartDate = gregorianCalendar;
+	public void setCartDate(java.util.Date date) {
+		this.cartDate = date;
 	}
 
 }

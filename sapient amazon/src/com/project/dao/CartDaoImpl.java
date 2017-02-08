@@ -28,7 +28,7 @@ public class CartDaoImpl implements CartDao {
 		pstmt.setInt(1, cart.getCustomerId());
 		pstmt.setInt(2, cart.getProductId());
 		pstmt.setInt(3, cart.getQuantity());
-		pstmt.setDate(4, cart.getCartDate());
+		pstmt.setDate(4, (Date) cart.getCartDate());
 		count++;
 		}
 		if(count==cartList.size())
