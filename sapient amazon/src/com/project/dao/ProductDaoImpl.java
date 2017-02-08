@@ -40,6 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 		return false;
 	}
 
+	<<<<<<<HEAD
 	@Override
 	public Boolean deleteProduct(int pid) throws SQLException {
 		Statement stmt = con.createStatement();
@@ -49,6 +50,67 @@ public class ProductDaoImpl implements ProductDao {
 			return true;
 		}
 		return false;
+=======
+@Override
+public Boolean deleteProduct(int pid) throws SQLException {
+	// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
+	Statement stmt=con.createStatement();
+	 String sql = "DELETE FROM product_info " +"WHERE id ="+pid;
+int rows=stmt.executeUpdate(sql);
+if(rows>0){
+	return true;
+}
+	return false;
+}
+
+@Override
+public boolean updateProduct(Product product)throws SQLException {
+	// TODO Auto-generated method stub
+	
+	Statement stmt=con.createStatement();
+		pstmt = con.prepareStatement("UPDATE PRODUCT_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
+		
+		 pstmt.setString(1,product.getName());
+		 pstmt.setString(2,product.getCategory());
+		 pstmt.setDouble(3,product.getPrice());
+		 pstmt.setInt(4,product.getQuantity());
+		 pstmt.setInt(5,product.getDiscount());
+		 pstmt.setInt(6,product.getProductId());
+				int row = pstmt.executeUpdate();
+				 con.close();
+				 if( row>0)
+					 return true;
+				else
+						 return false;
+}
+
+@Override
+public List<Product> viewProduct(String pcategory)throws SQLException {
+	// TODO Auto-generated method stubcon=cd.dbCon();
+	List<Product> prodList=new ArrayList<Product>();
+	Statement stmt=con.createStatement();
+	ResultSet rs=stmt.executeQuery("select * from product_info where product_category= "+pcategory);
+	while(rs.next()){
+		int pid=rs.getInt("product_id");
+		String productname=rs.getString("product_name");
+		
+	
+		
+	 String category = rs.getString("product_category");
+	int productprice = rs.getInt("product_price");
+	int productquantity=rs.getInt("product_quantity");
+
+	product.setProductId(pid);
+	product.setName(productname);
+	product.setCategory(category);
+	product.setPrice(productprice);
+	product.setQuantity(productquantity);
+	prodList.add(product);
+	//System.out.println(product);
+	
+		
+>>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 	}
 
 	@Override
