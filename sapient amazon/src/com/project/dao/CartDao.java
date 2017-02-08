@@ -9,7 +9,7 @@ import com.project.bean.Product;
 
 public interface CartDao {
 
-		boolean addToCart(Cart cart) throws ClassNotFoundException, SQLException;
+		boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException;
 	boolean removeFromCart(Cart cart)throws SQLException;
 	boolean update(Cart cart);
 	List<Product> viewCart(int Customer_id);
