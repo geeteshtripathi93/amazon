@@ -1,14 +1,24 @@
 package com.project.bl;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.project.bean.Admin;
+import com.project.bean.BillDetails;
+import com.project.bean.Product;
 import com.project.dao.AdminDao;
 import com.project.dao.AdminDaoImpl;
+import com.project.dao.BillDao;
+import com.project.dao.BillDaoImpl;
+import com.project.dao.ProductDao;
+import com.project.dao.ProductDaoImpl;
 
 public class AdminBL {
 
 	private AdminDao admin1 = new AdminDaoImpl();
+	private ProductDao product1=new ProductDaoImpl();
+	private BillDao bill1= new BillDaoImpl();
 	
 	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException {
 		
@@ -33,22 +43,45 @@ public class AdminBL {
 		return admin1.update(admin);
 	}
 	
+	public void addCategory(){
+		
+	}
 	public void viewCategory(){
 		
+		
 	}
+	
 	public void updateCategory(){
 		
+		
 	}
-	
-	public void viewProduct(){
+	public void deleteCategory(){
 		
 	}
 	
-	public void updateProduct(){
+	
+	
+	public boolean addProduct(Product product) throws SQLException, ClassNotFoundException{
+		return product1.addProduct(product);
+	}
+	
+	
+	public List<Product> viewProduct(String pcategory) throws SQLException{
+		return  product1.viewProduct(pcategory);	
+	}
+	
+	public boolean updateProduct(Product product) throws SQLException{
+		return product1.updateProduct(product);
 		
 	}
 	
-	public void deleteProduct(){
-		
+	public Boolean deleteProduct(int pid) throws SQLException{
+		return product1.deleteProduct(pid);	
+	}
+	
+	
+	
+	public List<BillDetails> getAllBillDetails() throws SQLException, ClassNotFoundException{
+		return bill1.getAllBillDetails();
 	}
 }
