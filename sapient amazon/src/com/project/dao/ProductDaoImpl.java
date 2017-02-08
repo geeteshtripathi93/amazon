@@ -23,7 +23,7 @@ public class ProductDaoImpl implements ProductDao {
 		// Statement stmt=con.createStatement();
 		//
 
-		pstmt = con.prepareStatement("insert into product_info Emp values(?,?,?,?,?,?)");
+		pstmt = con.prepareStatement("insert into product_info  values(?,?,?,?,?,?)");
 		pstmt.setInt(1, product.getProductId());
 		pstmt.setString(2, product.getName());
 		pstmt.setString(3, product.getCategory());
