@@ -22,7 +22,7 @@ CartDaoImpl cart;
 
 	@Test
 	public void testAddToCart() {
-		
+		assertTrue();
 	}
 
 	@Test
