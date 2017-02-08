@@ -11,7 +11,17 @@ public class AdminBL {
 	private AdminDao admin1 = new AdminDaoImpl();
 	
 	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException {
-		return admin1.validation(email, password);	
+		
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        if(m.matches()){
+        	return admin1.validation(email, password);
+        }
+        else 
+        	System.out.println("email ID is not valid");
+			
+        return false;
 	}	
 	
 	public boolean updatePassword(Admin admin) throws SQLException{
