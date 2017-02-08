@@ -48,4 +48,6 @@ public class BillHistory {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+
+
 }
