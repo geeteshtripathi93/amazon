@@ -10,11 +10,11 @@ import com.project.helper.CreateConnection;
 
 public class AdminDaoImpl implements AdminDao {
 
-	 private CreateConnection createCon = new CreateConnection();
-	 private Connection connection =null;
-	 private ResultSet rs = null;
-	 private PreparedStatement pstmt = null;
-	
+	private CreateConnection createCon = new CreateConnection();
+	private Connection connection = null;
+	private ResultSet rs = null;
+	private PreparedStatement pstmt = null;
+
 	@Override
 	public boolean validation(String email, String password) throws ClassNotFoundException, SQLException {
 		connection = createCon.getCon();
@@ -22,11 +22,11 @@ public class AdminDaoImpl implements AdminDao {
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
 		int row = pstmt.executeUpdate();
-		 connection.close();
-		 if( row>0)
-			 return true;
-			 else
-				 return false;
+		connection.close();
+		if (row > 0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -36,10 +36,11 @@ public class AdminDaoImpl implements AdminDao {
 		pstmt.setString(1, admin.getMail());
 		pstmt.setString(2, admin.getPassword());
 		int row = pstmt.executeUpdate();
-		 connection.close();
-		 if( row>0)
-			 return true;
-			 else
-				 return false;}
+		connection.close();
+		if (row > 0)
+			return true;
+		else
+			return false;
+	}
 
 }
