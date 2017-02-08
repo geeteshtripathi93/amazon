@@ -38,13 +38,6 @@ public class CustomerDaoTest {
 		assertTrue(customerDao.insert(customer));
 	}
 
-	@Test(expected = SQLException.class)
-	public void notNumberTestInsert() throws ClassNotFoundException, SQLException {
-		customer = new Customer('a', "aa", "ll", "hsh", "ghsg", "561420");
-		assertFalse(customerDao.insert(customer));
-		System.out.println("Customer id can't be a character");
-	}
-	
 	@Test(expected = NullPointerException.class)
 	public void positiveTestValidation() throws ClassNotFoundException, SQLException {
 		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
@@ -56,17 +49,10 @@ public class CustomerDaoTest {
 		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
 		assertFalse(customerDao.validation("hsh", "ghs"));
 	}
-	
+
 	@Test(expected = NullPointerException.class)
-	public void negativeTestUpdate() throws ClassNotFoundException, SQLException {
-		customer = new Customer(-4, "aa", "ll", "hsh", "ghsg", "561420");
-		assertFalse(customerDao.update(customer));
-		System.out.println("Customer id can't be negative");
-	}
-	
-	@Test(expected = NullPointerException.class)
-	public void positiveTestUpdate() throws ClassNotFoundException, SQLException {
-		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
+	public void zeroTestUpdate() throws ClassNotFoundException, SQLException {
+		customer = new Customer(0, "aa", "ll", "hsh", "ghsg", "561420");
 		assertTrue(customerDao.update(customer));
 	}
 
