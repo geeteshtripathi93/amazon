@@ -6,11 +6,11 @@ public class Bill {
 	private int customerId;
 	private int billId;
 	private Date billDate;
-	
+
 	public Bill() {
-		
+
 	}
-	
+
 	public Bill(int customerId, int billId, Date billDate) {
 		this.customerId = customerId;
 		this.billId = billId;

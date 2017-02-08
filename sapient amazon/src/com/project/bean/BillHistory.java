@@ -5,11 +5,11 @@ public class BillHistory {
 	private int productId;
 	private int quantity;
 	private int discount;
-	
-	public BillHistory(){
-		
+
+	public BillHistory() {
+
 	}
-	
+
 	public BillHistory(int billId, int productId, int quantity, int discount) {
 		this.billId = billId;
 		this.productId = productId;
