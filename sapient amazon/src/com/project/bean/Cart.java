@@ -7,11 +7,11 @@ public class Cart {
 	private int productId;
 	private int quantity;
 	private Date cartDate;
-	
+
 	public Cart() {
-		
+
 	}
-	
+
 	public Cart(int customerId, int productId, int quantity, Date cartDate) {
 		super();
 		this.customerId = customerId;
@@ -52,5 +52,4 @@ public class Cart {
 		this.cartDate = cartDate;
 	}
 
-	
 }
