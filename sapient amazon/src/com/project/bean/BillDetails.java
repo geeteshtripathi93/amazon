@@ -1,6 +1,5 @@
 package com.project.bean;
 import java.sql.Date;
-import java.sql.SQLException;
 
 public class BillDetails {
 private String customerId;
@@ -14,7 +13,7 @@ private Date date;
 public String getCustomerId() {
 	return customerId;
 }
-public void setCustomerId(String customerId)throws ClassNotFoundException, SQLException {
+public void setCustomerId(String customerId) {
 	this.customerId = customerId;
 }
 public int getBillId() {
