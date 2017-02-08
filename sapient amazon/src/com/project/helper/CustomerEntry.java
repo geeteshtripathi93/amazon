@@ -1,11 +1,11 @@
 package com.project.helper;
 
 import java.util.Scanner;
-
 import com.project.bean.Customer;
+
 public class CustomerEntry {
 	
-	 private Customer customer = new Customer();
+	private Customer customer = new Customer();
 	
 	public Customer input(){
 		Scanner sc=new Scanner(System.in);
