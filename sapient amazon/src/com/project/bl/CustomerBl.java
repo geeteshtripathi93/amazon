@@ -1,16 +1,25 @@
 package com.project.bl;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import com.project.bean.CartDetails;
+import com.project.bean.Category;
 import com.project.bean.Customer;
+import com.project.dao.CartDao;
+import com.project.dao.CartDaoImpl;
+import com.project.dao.CategoryDao;
+import com.project.dao.CategoryDaoImpl;
 import com.project.dao.CustomerDao;
 import com.project.dao.CustomerDaoImpl;
 import com.project.helper.CustomerEntry;
-import com.project.ui.MainMenu;
 
 public class CustomerBl {
 
 	private CustomerDao user = new CustomerDaoImpl();
+	private CartDao cart= new CartDaoImpl();	
+	private CategoryDao category= new CategoryDaoImpl();
+	
 	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException{
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -45,10 +54,7 @@ public class CustomerBl {
         }
 		return user.insert(customer);
 	}
-	public void viewCart(){
-		
-	}
-	
+
 	public boolean updateDetails() throws ClassNotFoundException, SQLException{
 		Customer customer= new CustomerEntry().input();
 		if((customer.getPassword().length()<8))
@@ -70,11 +76,15 @@ public class CustomerBl {
         return user.update(customer);
 	}
 	
+	public List<CartDetails> viewCart(int customerId) throws ClassNotFoundException, SQLException{
+		return cart.viewCart(customerId);
+	}
+ 
 	public void viewCategory(){
 		
 	}
 	
-	public void history(){
+	public void billHistory(){
 		
 	}
 	
