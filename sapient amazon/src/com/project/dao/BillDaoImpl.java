@@ -143,6 +143,33 @@ public class BillDaoImpl implements BillDao {
 		return billList;
 	}
 
+	@Override
+	public List<BillDetails> getCurrentBill(Bill bill) throws ClassNotFoundException, SQLException {
+		
+		List<BillDetails> billList = new LinkedList<BillDetails>();
+		connection = createCon.getCon();
+		BillDetails billdetail= null;
+		double totalPrice=0.0;
+		pstmt= connection.prepareStatement("select product_id,product_quantity,product_discount,product_price from bill_history where bill_id=?");
+			pstmt.setInt(1, rs.getInt(bill.getBillId()));
+			rs2= pstmt.executeQuery();
+			while(rs2.next()){
+			billdetail= new BillDetails();
+			billdetail.setCustomerId(rs.getInt("customer_id"));
+			billdetail.setBillId(rs.getInt(1));
+			billdetail.setProductId(rs2.getInt("product_id"));
+			billdetail.setPrice(rs2.getDouble("product_price"));
+			billdetail.setDiscount(rs2.getInt("product_discount"));
+			billdetail.setQuantity(rs2.getInt("product_quantity"));
+			billdetail.setDate(rs.getDate("bill_date"));
+			totalPrice= (rs2.getDouble("product_price") * rs2.getInt("product_quantity")) *(100-rs2.getInt("product_discount")/100);
+			billdetail.setTotalPrice(totalPrice);
+			billList.add(billdetail);
+			}
+		return billList;
+	}
+
+	
 	
 	
 	
