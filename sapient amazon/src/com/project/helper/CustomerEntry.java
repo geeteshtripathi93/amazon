@@ -10,15 +10,15 @@ public class CustomerEntry {
 	public Customer input(){
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter First Name : ");
-		customer.setfirstName(sc.next());
+		customer.setFirstName(sc.next());
 		System.out.println("Enter Last Name : ");
-		customer.setlastName(sc.next());
+		customer.setLastName(sc.next());
 		System.out.println(" Enter Email Id : ");
-		customer.setemail(sc.next());
+		customer.setEmail(sc.next());
 		System.out.println(" Enter Password : ");
-		customer.setpassword(sc.next());
+		customer.setPassword(sc.next());
 		System.out.println(" Enter Phone Number : ");
-		customer.setphoneNumber(sc.next());
+		customer.setPhoneNumber(sc.next());
 	return customer;	
 	}
 	

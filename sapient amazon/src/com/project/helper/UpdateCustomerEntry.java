@@ -11,15 +11,15 @@ public class UpdateCustomerEntry {
 	public Customer update(){
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter new First Name : ");
-		customer.setfirstName(sc.next());
+		customer.setFirstName(sc.next());
 		System.out.println("Enter new  Last Name : ");
-		customer.setlastName(sc.next());
+		customer.setLastName(sc.next());
 		System.out.println(" Enter new Email Id : ");
-		customer.setemail(sc.next());
+		customer.setEmail(sc.next());
 		System.out.println(" Enter new Password : ");
-		customer.setpassword(sc.next());
+		customer.setPassword(sc.next());
 		System.out.println(" Enter new Phone Number : ");
-		customer.setphoneNumber(sc.next());
+		customer.setPhoneNumber(sc.next());
 	return customer;	
 	}
 }
