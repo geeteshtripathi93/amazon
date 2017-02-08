@@ -10,6 +10,7 @@ public class BillHistory {
 
 	public BillHistory() {
 
+		
 	}
 
 	public BillHistory(int billId, int productId, int quantity, int discount, double productPrice) {
