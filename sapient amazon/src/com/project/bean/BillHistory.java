@@ -17,35 +17,35 @@ public class BillHistory {
 		this.discount = discount;
 	}
 
-	public int getBill_id() {
+	public int getBillId() {
 		return billId;
 	}
 
-	public void setBill_id(int billId) {
+	public void setBillId(int billId) {
 		this.billId = billId;
 	}
 
-	public int getProd_id() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProd_id(int productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-	public int getP_qty() {
+	public int getProductQuantity() {
 		return quantity;
 	}
 
-	public void setP_qty(int quantity) {
+	public void setProductQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public int getP_disc() {
+	public int getProductDisc() {
 		return discount;
 	}
 
-	public void setP_disc(int discount) {
+	public void setProductDisc(int discount) {
 		this.discount = discount;
 	}
 }
