@@ -8,10 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-
 import com.project.bean.Cart;
 import com.project.bean.CartDetails;
-import com.project.bean.Product;
 import com.project.helper.CreateConnection;
 
 public class CartDaoImpl implements CartDao {
@@ -43,23 +41,14 @@ public class CartDaoImpl implements CartDao {
 	public boolean removeFromCart(Cart cart) throws SQLException{
 		int customerId=cart.getCustomerId();
 		int productId =cart.getProductId();
-
 		Statement stmt=connection.createStatement();
-			 String sql = "DELETE FROM cart" +"WHERE product_id ="+productId+"AND"+"customer_Id="+customerId;
+		String sql = "DELETE FROM cart" +"WHERE product_id ="+productId+"AND"+"customer_Id="+customerId;
 		int rows=stmt.executeUpdate(sql);
 		if(rows>0){
 			return true;
 		}
 			return false;
-			
-			
-			
 		} 
-
-
-	
-	
-
 	@Override
 	public List<CartDetails> viewCart(int customerId) throws SQLException, ClassNotFoundException {
 		
