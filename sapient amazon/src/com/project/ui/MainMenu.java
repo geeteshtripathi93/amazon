@@ -1,11 +1,17 @@
 package com.project.ui;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.project.bean.Customer;
+import com.project.bl.CustomerBl;
+import com.project.helper.CustomerEntry;
 
 public class MainMenu {
-
+	private MainMenu mainMenu = new MainMenu();
+	private Scanner sc = new Scanner(System.in);
+	int ch;
+	private CustomerBl customerBl= new CustomerBl();
 	public void displayMenu() {
 		System.out.println("WELCOME TO AMAZON");
 
@@ -13,29 +19,35 @@ public class MainMenu {
 	}
 
 	public void choice(int ch) {
-		Scanner sc = new Scanner(System.in);
-		Customer CustomerOb = new Customer();
+		
+		
 
 		switch (ch) {
 		case 1:
-			System.out.println("Enter your email id/username");
-			String uName = sc.next();
-			System.out.println("enter your password");
-			String pass = sc.next();
-
+			System.out.println("Enter your email id/username : ");
+			String email = sc.next();
+			System.out.println("Enter your password : ");
+			String password = sc.next();
+			try {
+				customerBl.signIn(email, password);
+			} catch (ClassNotFoundException | SQLException e1) {
+				System.out.println("Sorry, Please try again!!!!");
+				mainMenu.displayMenu();
+				System.out.println("Enter your choice : ");
+				ch = sc.nextInt();
+				mainMenu.choice(ch);
+			}
 			break;
 		case 2:
-			System.out.println("Enter your first name : ");
-			String fName = sc.next();
-			System.out.println("Enter your last name : ");
-			String lName = sc.next();
-			System.out.println("Enter your email ID : ");
-			String email = sc.next();
-			System.out.println("Enter your password name : ");
-			String password = sc.next();
-			System.out.println("Enter your phone number : ");
-			int number = sc.nextInt();
-
+			Customer customer= new CustomerEntry().input();
+			try {
+				customerBl.signUp(customer);
+			} catch (ClassNotFoundException | SQLException e) {
+				System.out.println("Sorry, Please try again!!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());		
+			}
 			break;
 		case 3:
 			// fetch category list
@@ -53,6 +65,7 @@ public class MainMenu {
 		default:
 			System.out.println("INVALID OPTION");
 			displayMenu();
+			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
 		}
 	}
