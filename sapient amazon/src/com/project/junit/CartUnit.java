@@ -25,6 +25,11 @@ CartDaoImpl cart;
 		assertTrue();
 	}
 
+	private void assertTrue() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Test
 	public void testRemoveFromCart() {
 		fail("Not yet implemented");

@@ -45,7 +45,7 @@ public class Cart {
 		this.quantity = quantity;
 	}
 
-	public Date getCartDate() {
+	public GregorianCalendar getCartDate() {
 		return cartDate;
 	}
 

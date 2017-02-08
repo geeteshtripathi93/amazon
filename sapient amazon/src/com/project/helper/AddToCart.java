@@ -25,9 +25,8 @@ public class AddToCart {
 			 cart.setQuantity(quantity);
 			 cart.setCartDate(new GregorianCalendar());
 	
+			 cartList.add(cart);
 		 }while(true);
-		 
-		 
-		 return
+		 return cartList;
 	}
 }
