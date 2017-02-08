@@ -2,7 +2,7 @@ package com.project.bean;
 import java.sql.Date;
 
 public class BillDetails {
-private String customerId;
+private int customerId;
 private int billId;
 private int productId;
 private double price;
@@ -10,10 +10,10 @@ private int discount;
 private int quantity;
 private double totalPrice;
 private Date date;
-public String getCustomerId() {
+public int getCustomerId() {
 	return customerId;
 }
-public void setCustomerId(String customerId) {
+public void setCustomerId(int customerId) {
 	this.customerId = customerId;
 }
 public int getBillId() {
@@ -58,7 +58,6 @@ public Date getDate() {
 public void setDate(Date date) {
 	this.date = date;
 }
-
 
 
 }
