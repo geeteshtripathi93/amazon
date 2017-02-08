@@ -40,9 +40,4 @@ public class AdminUnit {
 		assertFalse(adminDao.validation("hsh", "ghs"));
 	}
 
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
 }

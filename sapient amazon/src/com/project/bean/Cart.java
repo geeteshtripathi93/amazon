@@ -12,7 +12,7 @@ public class Cart {
 
 	}
 
-	public Cart(int customerId, int productId, int quantity, java.sql.Date cartDate) {
+	public Cart(int customerId, int productId, int quantity, Date cartDate) {
 		super();
 		this.customerId = customerId;
 		this.productId = productId;
@@ -44,7 +44,7 @@ public class Cart {
 		this.quantity = quantity;
 	}
 
-	public java.sql.Date getCartDate() {
+	public Date getCartDate() {
 		return cartDate;
 	}
 
