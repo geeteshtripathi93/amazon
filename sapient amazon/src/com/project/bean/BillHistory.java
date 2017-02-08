@@ -33,35 +33,21 @@ public class BillHistory {
 		this.productId = productId;
 	}
 
-<<<<<<< HEAD
-	public int getProductQuantity() {
-=======
 	public int getQuantity() {
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 		return quantity;
 	}
 
-<<<<<<< HEAD
-	public void setProductQuantity(int quantity) {
-=======
 	public void setQuantity(int quantity) {
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 		this.quantity = quantity;
 	}
 
-<<<<<<< HEAD
-	public int getProductDisc() {
-=======
 	public int getDiscount() {
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 		return discount;
 	}
 
-<<<<<<< HEAD
-	public void setProductDisc(int discount) {
-=======
 	public void setDiscount(int discount) {
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 		this.discount = discount;
 	}
+
+
 }
