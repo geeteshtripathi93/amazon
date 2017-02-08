@@ -60,7 +60,7 @@ public boolean updateProduct(Product product)throws SQLException {
 	// TODO Auto-generated method stub
 	
 	Statement stmt=con.createStatement();
-		pstmt = con.prepareStatement("UPDATE CUSTOMER_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
+		pstmt = con.prepareStatement("UPDATE PRODUCT_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
 		
 		 pstmt.setString(1,product.getName());
 		 pstmt.setString(2,product.getCategory());
