@@ -1,5 +1,6 @@
 package com.project.ui;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,6 +8,8 @@ import com.project.bean.Category;
 import com.project.bean.Customer;
 import com.project.bean.Product;
 import com.project.bl.CustomerBl;
+import com.project.dao.CartDaoImpl;
+import com.project.helper.AddToCart;
 
 public class CustomerSecondPage {
 	CustomerBl customerbl = new CustomerBl();
@@ -19,7 +22,7 @@ public class CustomerSecondPage {
 
 	}
 
-	public boolean choice(int ch, CustomerBl customerbl) {
+	public boolean choice(int ch, CustomerBl customerbl) throws SQLException {
 		Scanner sc = new Scanner(System.in);
 		Customer CustomerOb = new Customer();
 
@@ -30,30 +33,20 @@ public class CustomerSecondPage {
 			for (Product product : productlist) {
 				System.out.println((index++) + " " + product.getName());
 			}
-
+	
+			AddToCart add=new AddToCart();
+			customerbl.addToCart(add.addingToCart(customerId));
 			return false;
 		case 2:
 			return true;
 		case 3:
-			// fetch category list
-
-			break;
-
-		case 4:
-			System.out.println("Enter the product name you want to search for : ");
-			String find = sc.next();
-			break;
-
-		case 5:
 			System.exit(0);
-			break;
 		default:
 			System.out.println("INVALID OPTION");
 			displayMenu();
-			choice(sc.nextInt());
+			choice(sc.nextInt(), customerbl);
 		}
-
-		System.out.println("Press 1/2/3/4/5/6/7");
+		return true;
 
 	}
 

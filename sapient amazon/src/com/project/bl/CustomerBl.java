@@ -20,17 +20,21 @@ import com.project.dao.CustomerDao;
 import com.project.dao.CustomerDaoImpl;
 import com.project.dao.ProductDao;
 import com.project.dao.ProductDaoImpl;
+import com.project.helper.AddToCart;
 import com.project.helper.CustomerEntry;
 
 public class CustomerBl {
-
+			public CustomerBl(int customerId) {
+			this.customerId=customerId;
+			}
+			private int customerId;
 	private CustomerDao user = new CustomerDaoImpl();
 	private CartDao cart= new CartDaoImpl();	
 	private CategoryDao category1= new CategoryDaoImpl();
 	private BillDao bill= new BillDaoImpl(); 
 	private ProductDao product=new ProductDaoImpl();
 	
-	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException{
+	public int signIn(String email, String password) throws ClassNotFoundException, SQLException{
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
@@ -40,27 +44,27 @@ public class CustomerBl {
         else 
         	System.out.println("email ID is not valid");
 			
-        return false;
+        return 0;
 		
 	}	
 	
-	public boolean signUp(Customer customer) throws ClassNotFoundException, SQLException{
+	public int signUp(Customer customer) throws ClassNotFoundException, SQLException{
 		
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
-			return false;
+			return 0;
 		}
 		if(customer.getPhoneNumber().contains("[a-zA-Z]+") == true||customer.getPhoneNumber().length()<10){
 			System.out.println("Please check Phone Number");
-			return false;
+			return 0;
 		}
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(customer.getEmail());
         if(!m.matches()){
         	System.out.println("Invalid Email ID");
-        	return false;
+        	return 0;
         }
 		return user.insert(customer);
 	}
@@ -90,7 +94,8 @@ public class CustomerBl {
 		return cart.viewCart(customerId);
 	}
 	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException{
-		return cart.addToCart(cartList);
+	AddToCart add=new AddToCart();
+		return cart.addToCart(add.addingToCart(customerId));
 	}
 	public boolean removeFromCart(int productId,int customerId) throws SQLException{
 		return cart.removeFromCart(productId, customerId);

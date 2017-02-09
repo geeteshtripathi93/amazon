@@ -11,7 +11,7 @@ public class MainMenu {
 	private MainMenu mainMenu = new MainMenu();
 	Scanner sc = new Scanner(System.in);
 	int ch;
-	private CustomerBl customerBl= new CustomerBl();
+	private CustomerBl customerBl;
 	public void displayMenu() {
 		System.out.println("WELCOME TO AMAZON");
 
@@ -21,7 +21,7 @@ public class MainMenu {
 	public void choice(int ch) {
 		
 		
-
+		int customerId=0;
 		switch (ch) {
 		case 1:
 		System.out.println("Enter your email id/username : ");
@@ -29,7 +29,13 @@ public class MainMenu {
 			System.out.println("Enter your password : ");
 			String password = sc.next();
 			try {
-				customerBl.signIn(email, password);
+			customerId=	customerBl.signIn(email, password);
+			if (customerId!=0) {
+				System.out.println("signed In");
+				customerBl= new CustomerBl(customerId);
+			} else {
+				System.out.println("Sorry, Please try again!!!!");
+			}
 			} catch (ClassNotFoundException | SQLException e1) {
 				System.out.println("Sorry, Please try again!!!!");
 				mainMenu.displayMenu();
