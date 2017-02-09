@@ -24,8 +24,6 @@ public class MainMenu {
 
 		switch (ch) {
 		case 1:
-		
-
 		System.out.println("Enter your email id/username : ");
 			String email = sc.next();
 			System.out.println("Enter your password : ");

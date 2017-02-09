@@ -7,7 +7,7 @@ import com.project.bean.Product;
 public class ProductEntry {
 private Product product=new Product();
 	
-	public void input(){
+	public Product input(){
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter Product id : ");
 		product.setProductId(sc.nextInt());
@@ -21,13 +21,10 @@ private Product product=new Product();
 		product.setQuantity(sc.nextInt());
 		System.out.println("Enter product Discount : ");
 		product.setDiscount(sc.nextInt());
-
+return product;
 	}
 
-	public Product getproduct() {
-		return product;
-	}
-
+	
 	public void setProduct(Product product) {
 		this.product = product;
 	}
