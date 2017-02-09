@@ -7,7 +7,7 @@ import com.project.bean.Category;
 import com.project.bl.CustomerBl;
 
 public class CustomerFirstUI {
-Scannerr sc=null;
+Scanner sc=null;
 CustomerBl customerbl=new CustomerBl();
 	public void displayMenu(){
 		System.out.println("1. View Category");
@@ -32,7 +32,12 @@ CustomerBl customerbl=new CustomerBl();
 				System.out.println(category. getCategoryName());
 			}
 			
-			System.out.println("Choose category");
+
+
+			CustomerSecondPage customersecond= new CustomerSecondPage();
+			customersecond.displayMenu(); 
+			
+			
 //			
 //				//System.out.println("a. Login");
 //			
@@ -61,9 +66,9 @@ CustomerBl customerbl=new CustomerBl();
 //					else{
 //						System.out.println("Incorrect UserID or Password Please try again");
 //					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
 				break;
 			
 			

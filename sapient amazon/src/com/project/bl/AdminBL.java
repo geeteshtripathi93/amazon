@@ -52,8 +52,8 @@ public class AdminBL {
 	}
 	
 	
-	public List<Category> viewCategory(Category category)throws SQLException{
-		return category1.viewCategory(category);
+	public List<Category> viewCategory()throws SQLException{
+		return category1.viewCategory();
 		
 	}
 	
