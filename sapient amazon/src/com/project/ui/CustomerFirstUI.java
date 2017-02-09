@@ -11,9 +11,6 @@ public class CustomerFirstUI {
 	CustomerBl customerbl = new CustomerBl();
 
 	public void displayMenu() {
-Scanner sc=null;
-CustomerBl customerbl=new CustomerBl();
-	public void displayMenu(){
 		System.out.println("1. View Category");
 		System.out.println("2. Update Profile");
 		System.out.println("3. Search By Category");
@@ -36,7 +33,18 @@ CustomerBl customerbl=new CustomerBl();
 				System.out.println(category. getCategoryName());
 			}
 			
-			System.out.println("Choose category");
+
+
+			CustomerSecondPage customersecond= new CustomerSecondPage();
+			customersecond.displayMenu(); 
+			int choice2=sc.nextInt();
+			boolean check=customersecond.choice(choice, customerbl);
+			if(check){
+				displayMenu();
+				int choice1=sc.nextInt();
+				choice(choice1);
+			}
+			
 //			
 //				//System.out.println("a. Login");
 //			
@@ -65,9 +73,9 @@ CustomerBl customerbl=new CustomerBl();
 //					else{
 //						System.out.println("Incorrect UserID or Password Please try again");
 //					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
 				break;
 			
 			
@@ -112,62 +120,70 @@ CustomerBl customerbl=new CustomerBl();
 			default :System.out.println("Invalid choice");
 			break;
 				
-			}}break;case 2:try
-
-	{
-		try {
-			idOb.input();
-		} catch (ClassNotFoundException e) {
-			System.out.println("Sorry Record Not Inserted");
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			System.out.println("Sorry Record Not Inserted");
-			e.printStackTrace();
-		}
-		boolean status = b2.add(idOb.getEmployee());
-		if (status) {
-			System.out.println("Congratulations your Space have been Reserved!!! ");
-		}
-	}catch(
-	SQLException e)
-	{
-		System.out.println("Sorry Record Not Inserted");
-		e.printStackTrace();
-	}break;case 3:try
-	{
-		gdOb.input();
-		boolean status = b3.add(gdOb.getGuest());
-		if (status) {
-			System.out.println(gdOb.getGuest());
-			System.out.println("Congratulations your Space have been Reserved!!! ");
-			System.out.println("To Cancel Booking Press 1 else Press 0 : ");
-			int i = sc.nextInt();
-			if (i == 1) {
-				System.out.println("Enter vehicle number : ");
-				String vehicleNo = null;
-				vehicleNo = sc.next();
+			}}break;
+		case 2:
+			try {
 				try {
-
-					Guest g = b3.cancelBookingBl(gdOb.getGuest(), vehicleNo);
-					if (g != null) {
-
-						System.out.println("You have Cancelled your Booking");
-					}
-
-				} catch (SQLException e) {
+					idOb.input();
+				} catch (ClassNotFoundException e) {
+					System.out.println("Sorry Record Not Inserted");
+					
+					e.printStackTrace();
+				} catch (IOException e) {
+					
+					System.out.println("Sorry Record Not Inserted");
 					e.printStackTrace();
 				}
-
+				boolean status=b2.add(idOb.getEmployee());
+				if(status){
+					System.out.println("Congratulations your Space have been Reserved!!! ");
+				}
+			} 
+			catch (SQLException e) {
+				System.out.println("Sorry Record Not Inserted");
+				e.printStackTrace();
 			}
+			break;
+		case 3:
+			try {
+				gdOb.input();
+				boolean status=b3.add(gdOb.getGuest());
+				if(status){
+					System.out.println(gdOb.getGuest());
+					System.out.println("Congratulations your Space have been Reserved!!! ");
+					System.out.println("To Cancel Booking Press 1 else Press 0 : ");
+					int i=sc.nextInt();
+					if(i==1)
+					{
+						System.out.println("Enter vehicle number : ");
+						String vehicleNo=null;
+						vehicleNo=sc.next();
+						try {
+							
+							Guest g=b3.cancelBookingBl(gdOb.getGuest(),vehicleNo);
+							if(g!=null){
+								
+								System.out.println("You have Cancelled your Booking");
+							}
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+							
+						}
+				}
+			} catch (SQLException e) {
+				System.out.println("Sorry Record Not Inserted");
+				e.printStackTrace();
+			}
+			break;
+		case 4:
+			System.out.println("Exit!!");
+			System.exit(0);
+			break;
+		default:
+			System.out.println("Invalid choice");
+			break;
 		}
-	}catch(
-	SQLException e)
-	{
-		System.out.println("Sorry Record Not Inserted");
-		e.printStackTrace();
-	}break;case 4:System.out.println("Exit!!");System.exit(0);break;default:System.out.println("Invalid choice");break;
-}
 
 }
