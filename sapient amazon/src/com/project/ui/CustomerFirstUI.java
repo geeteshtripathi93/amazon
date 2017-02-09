@@ -7,8 +7,16 @@ import com.project.bean.Category;
 import com.project.bl.CustomerBl;
 
 public class CustomerFirstUI {
-	Scanner sc = null;
-	CustomerBl customerbl = new CustomerBl(customerId);
+	private	Scanner sc = null;
+	private CustomerBl customerbl = new CustomerBl();
+	private int customerId;
+	
+	
+		public CustomerFirstUI(int customerId) {
+			
+			this.customerId= customerId;
+			
+		}
 
 	public void displayMenu() {
 		System.out.println("1. View Category");
