@@ -83,9 +83,6 @@ catch (SQLException | ClassNotFoundException e) {
 						System.out.println("Enter your choice : ");
 						choice(sc.nextInt());		
 					}
-				catch(ClassNotFoundException e){
-					e.printStackTrace();
-				}
 				break;
 				
 			

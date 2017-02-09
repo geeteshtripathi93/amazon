@@ -19,6 +19,7 @@ public class CustomerEntry {
 		customer.setPassword(sc.next());
 		System.out.println(" Enter Phone Number : ");
 		customer.setPhoneNumber(sc.next());
+		System.out.println(customer); // test
 	return customer;	
 	}
 	

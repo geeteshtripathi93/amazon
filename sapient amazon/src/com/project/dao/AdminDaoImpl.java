@@ -18,7 +18,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public boolean validation(String email, String password) throws ClassNotFoundException, SQLException {
 		connection = createCon.getCon();
-		pstmt = connection.prepareStatement("SELECT * FROM ADMIN_INFO WHERE MAIL=? AND PASSWORD=?");
+		pstmt = connection.prepareStatement("SELECT * FROM ADMIN WHERE EMAIL=? AND PASSWORD=?");
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
 		int row = pstmt.executeUpdate();
@@ -32,7 +32,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public boolean update(Admin admin) throws SQLException, ClassNotFoundException {
 		connection = createCon.getCon();
-		pstmt = connection.prepareStatement("UPDATE ADMIN_INFO SET PASSWORD=? WHERE EMAIL=?");
+		pstmt = connection.prepareStatement("UPDATE ADMIN SET PASSWORD=? WHERE EMAIL=?");
 		pstmt.setString(2, admin.getMail());
 		pstmt.setString(1, admin.getPassword());
 		int row = pstmt.executeUpdate();

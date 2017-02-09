@@ -23,18 +23,30 @@ public class CustomerDaoImpl implements CustomerDao {
 		rs = statement.executeQuery("SELECT MAX(CUSTOMER_ID) FROM CUSTOMER_INFO");
 		rs.next();
 		int cId = rs.getInt(1);
+		System.out.println("Cid - "+ cId); //  test
 		customer.setCustomerId((cId + 1));
-		pstmt = connection.prepareStatement("INSERT INTO CUSTOMER VALUES(?,?,?,?,?,?)");
+		pstmt = connection.prepareStatement("INSERT INTO CUSTOMER_INFO VALUES(?,?,?,?,?,?)");
 		pstmt.setInt(1, customer.getCustomerId());
+		System.out.println("cid incremernt "+customer.getCustomerId());
 		pstmt.setString(2, customer.getFirstName());
 		pstmt.setString(3, customer.getLastName());
 		pstmt.setString(4, customer.getEmail());
 		pstmt.setString(5, customer.getPassword());
 		pstmt.setString(6, customer.getPhoneNumber());
-		int row = pstmt.executeUpdate();
-		connection.close();
-		if (row > 0)
+		System.out.println("test"); //test
+		int row=0;
+		try
+		{ row = pstmt.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		System.out.println("row-"+row); //test
+		if (row > 0){
+			connection.close();
 			return (cId+1);
+		}
 		else
 			return 0;
 
