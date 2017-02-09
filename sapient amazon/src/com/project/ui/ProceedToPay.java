@@ -1,12 +1,11 @@
 package com.project.ui;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
-
 import com.project.bean.Bill;
+import com.project.bean.BillDetails;
 import com.project.bl.CustomerBl;
-import com.project.dao.BillDao;
-import com.project.dao.BillDaoImpl;
 
 public class ProceedToPay {
 	
@@ -22,13 +21,29 @@ public class ProceedToPay {
 			Bill bill=null;
 			CustomerBl customerBl=new CustomerBl();
 			bill= customerBl.generateBill(customerId);
-			return true;
+			if (bill!= null) {
+				List<BillDetails> list = customerBl.getCurrentBill(bill);
+				for (BillDetails billDetails : list) {
+					System.out.println(billDetails);
+					CustomerFirstUI customerFUI = new CustomerFirstUI(customerId);
+					customerFUI.displayMenu();
+					System.out.println("Enter your Choice : ");
+					customerFUI.choice(sc.nextInt());
+				}
+				
+			} else {
+				display();
+				System.out.println("Enter your Choice : ");
+				payOption(customerId);
+			}
+			return false;
 		case 2:
 			return false;
 		case 3:
 			System.exit(0);
 		default:
 			display();
+			System.out.println("Enter your Choice : ");
 			payOption(customerId);
 		}
 		return false;
