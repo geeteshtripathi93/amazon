@@ -1,9 +1,12 @@
 package com.project.ui;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.project.bean.Category;
+import com.project.bean.Product;
+import com.project.bl.AdminBL;
 import com.project.bl.CustomerBl;
 
 public class CustomerFirstUI {
@@ -80,102 +83,31 @@ public class CustomerFirstUI {
 			
 			
 			case 2:
-				System.out.println("Enter your Employee  ID");
-				int eId=sc.nextInt();
-				System.out.println("Enter your Password");
 				
-				String pswd=sc.next();
-			   
-			   try {
-					Info e=b1.validation(eId,pswd);
-					if(e!=null){
-						int dp=e.getParkNo();
-						idOb.delPark(dp);
-						System.out.println("You are not a signee anymore!!!");
-						
-					}
-					else{
-						System.out.println("You are not a Signee!!!");
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-				try {
-					Boolean tf=b1.unsubscribe(eId);
-					if(tf){
-						
-						System.out.println("You have unsubscribed");
-					}
-					
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 				break;
 				
-			case "c":
-				System.out.println("Exit!!");
-				System.exit(0);
-				break;
-			default :System.out.println("Invalid choice");
-			break;
-				
-			}}break;
-		case 2:
+			
+			
+		
+		case 3:System.out.println("Enter the category name you want to search: \n");
+			String category=sc.next();
+			List<Product> productlist;
 			try {
-				try {
-					idOb.input();
-				} catch (ClassNotFoundException e) {
-					System.out.println("Sorry Record Not Inserted");
-					
-					e.printStackTrace();
-				} catch (IOException e) {
-					
-					System.out.println("Sorry Record Not Inserted");
-					e.printStackTrace();
-				}
-				boolean status=b2.add(idOb.getEmployee());
-				if(status){
-					System.out.println("Congratulations your Space have been Reserved!!! ");
-				}
+				productlist = customerbl.viewProduct(category);
+				for (Product prodlist : productlist) {
+				System.out.println(prodlist);		
 			} 
+				// Choose Category
+			}
 			catch (SQLException e) {
-				System.out.println("Sorry Record Not Inserted");
-				e.printStackTrace();
+			System.out.println("Sorry, somthing went wrong!!!");
+			displayMenu();
+			System.out.println("Enter your choice : ");
+			choice(sc.nextInt());	
 			}
-			break;
-		case 3:
-			try {
-				gdOb.input();
-				boolean status=b3.add(gdOb.getGuest());
-				if(status){
-					System.out.println(gdOb.getGuest());
-					System.out.println("Congratulations your Space have been Reserved!!! ");
-					System.out.println("To Cancel Booking Press 1 else Press 0 : ");
-					int i=sc.nextInt();
-					if(i==1)
-					{
-						System.out.println("Enter vehicle number : ");
-						String vehicleNo=null;
-						vehicleNo=sc.next();
-						try {
-							
-							Guest g=b3.cancelBookingBl(gdOb.getGuest(),vehicleNo);
-							if(g!=null){
-								
-								System.out.println("You have Cancelled your Booking");
-							}
-							
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-							
-						}
-				}
-			} catch (SQLException e) {
-				System.out.println("Sorry Record Not Inserted");
-				e.printStackTrace();
-			}
+			
+			
+			product.viewProduct(pcategory);
 			break;
 		case 4:
 			System.out.println("Exit!!");

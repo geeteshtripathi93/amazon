@@ -22,6 +22,7 @@ import com.project.dao.ProductDao;
 import com.project.dao.ProductDaoImpl;
 import com.project.helper.AddToCart;
 import com.project.helper.CustomerEntry;
+import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerBl {
 			
@@ -68,7 +69,7 @@ public class CustomerBl {
 	}
 
 	public boolean updateDetails() throws ClassNotFoundException, SQLException{
-		Customer customer= new CustomerEntry().input();
+		Customer customer= new UpdateCustomerEntry().update();
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
