@@ -37,6 +37,11 @@ public class Bill {
 		return billDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Bill [customerId=" + customerId + ", billId=" + billId + ", billDate=" + billDate + "]";
+	}
+
 	public void setBillDate(Date billDate) {
 		this.billDate = billDate;
 	}

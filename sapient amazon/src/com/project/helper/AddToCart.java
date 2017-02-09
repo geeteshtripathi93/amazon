@@ -8,7 +8,7 @@ import com.project.bean.Cart;
 
 public class AddToCart {
 
-	List<Cart> addingToCart(int customerId){
+	public List<Cart> addingToCart(int customerId){
 		 Scanner sc=new Scanner(System.in);
 		 List<Cart> cartList=new ArrayList<Cart>();
 		 do{

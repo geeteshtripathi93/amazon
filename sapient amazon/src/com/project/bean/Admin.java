@@ -4,6 +4,12 @@ public class Admin {
 	private String mail;
 	private String password;
 
+	
+	@Override
+	public String toString() {
+		return "Admin [mail=" + mail + ", password=" + password + "]";
+	}
+
 	public String getMail() {
 		return mail;
 	}

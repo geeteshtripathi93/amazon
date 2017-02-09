@@ -37,6 +37,13 @@ public class CartDetails {
 		this.productId = productId;
 	}
 
+	@Override
+	public String toString() {
+		return "CartDetails [productId=" + productId + ", productName=" + productName + ", price=" + price
+				+ ", quantity=" + quantity + ", discount=" + discount + ", totalPrice=" + totalPrice + ", category="
+				+ category + ", date=" + date + "]";
+	}
+
 	public String getProductName() {
 		return productName;
 	}
