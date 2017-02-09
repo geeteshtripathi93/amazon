@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.project.bean.Admin;
+import com.project.bean.BillDetails;
 import com.project.bean.Category;
 import com.project.bean.Product;
 import com.project.bl.AdminBL;
@@ -165,13 +167,47 @@ public class AdminFirstUI {
 		
 				break;
 			case 8:
-
+				
+				List<BillDetails> billList;
+				pcategory=null;
+				try {
+					billList = adminBl.getAllBillDetails();
+					for (BillDetails list : billList) {
+					System.out.println(list);		
+				} 
+					// Choose Category
+				}
+				catch (SQLException | ClassNotFoundException e) {
+				System.out.println("Sorry, somthing went wrong!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
+				}
+				
+                    
 				break;
 			case 9:
-
+        Admin admin=new Admin();
+        System.out.println("enter admin username:");
+        
+				admin.setMail(sc.next());
+				System.out.println("enter new password");
+				admin.setPassword(sc.next());
+				try{status=	adminBl.updatePassword(admin);			
+				if(status)
+					System.out.println(" Password updated");
+						else
+							System.out.println("  Not updated, Please try again!!!1");
+					} catch (SQLException e) {
+						System.out.println("Sorry, somthing went wrong!!!");
+						displayMenu();
+						System.out.println("Enter your choice : ");
+						choice(sc.nextInt());		
+					}	
+				
 				break;
 			case 10:
-
+System.exit(0);
 				break;
 			
 			default:
