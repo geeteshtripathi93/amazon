@@ -1,5 +1,4 @@
 package com.project.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.project.bean.Product;
 import com.project.helper.CreateConnection;
 
@@ -15,15 +13,12 @@ public class ProductDaoImpl implements ProductDao {
 	CreateConnection cd = new CreateConnection();
 	Connection con = null;
 	PreparedStatement pstmt = null;
-	Product product = new Product();
-	// Statement stmt=con.createStatement();
+	Product product =null;
+	
 
 	public boolean addProduct(Product product) throws SQLException, ClassNotFoundException {
-		// con=cd.getCon();
-		// Statement stmt=con.createStatement();
-		//
-
-		pstmt = con.prepareStatement("insert into product_info Emp values(?,?,?,?,?,?)");
+		
+		pstmt = con.prepareStatement("insert into product_info  values(?,?,?,?,?,?)");
 		pstmt.setInt(1, product.getProductId());
 		pstmt.setString(2, product.getName());
 		pstmt.setString(3, product.getCategory());
@@ -36,7 +31,7 @@ public class ProductDaoImpl implements ProductDao {
 		if (rows > 0) {
 			return true;
 		}
-		// con.close();
+	
 		return false;
 	}
 
@@ -53,7 +48,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public boolean updateProduct(Product product) throws SQLException {
-		Statement stmt = con.createStatement();
+		
 		pstmt = con.prepareStatement(
 				"UPDATE PRODUCT_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
 
@@ -83,20 +78,41 @@ public class ProductDaoImpl implements ProductDao {
 			String category = rs.getString("product_category");
 			int productprice = rs.getInt("product_price");
 			int productquantity = rs.getInt("product_quantity");
-
+			product= new Product();
 			product.setProductId(pid);
 			product.setName(productname);
 			product.setCategory(category);
 			product.setPrice(productprice);
 			product.setQuantity(productquantity);
-			prodList.add(product);
-			// System.out.println(product);
-
+			prodList.add(product);	
 		}
-		// return empList;
 		con.close();
-		// return null;
 		return prodList;
+
+	}
+
+	@Override
+	public Product searchProductByName(String productName) throws SQLException {
+		
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from product_info where product_name= " +productName );
+		while (rs.next()) {
+			int pid = rs.getInt("product_id");
+			String productname = rs.getString("product_name");
+
+			String category = rs.getString("product_category");
+			int productprice = rs.getInt("product_price");
+			int productquantity = rs.getInt("product_quantity");
+			product= new Product();
+			product.setProductId(pid);
+			product.setName(productname);
+			product.setCategory(category);
+			product.setPrice(productprice);
+			product.setQuantity(productquantity);
+			
+		}
+		con.close();
+		return product;
 
 	}
 
