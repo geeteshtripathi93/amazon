@@ -11,6 +11,9 @@ public class CustomerFirstUI {
 	CustomerBl customerbl = new CustomerBl();
 
 	public void displayMenu() {
+Scanner sc=null;
+CustomerBl customerbl=new CustomerBl();
+	public void displayMenu(){
 		System.out.println("1. View Category");
 		System.out.println("2. Update Profile");
 		System.out.println("3. Search By Category");
