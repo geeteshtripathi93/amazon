@@ -4,12 +4,18 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.project.bean.BillDetails;
+import com.project.bean.CartDetails;
 import com.project.bean.Category;
+import com.project.bean.Customer;
 import com.project.bean.Product;
 import com.project.bl.AdminBL;
 import com.project.bl.CustomerBl;
+import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerFirstUI {
+	
+boolean status =false;
 	private	Scanner sc = null;
 	private CustomerBl customerbl = new CustomerBl();
 	private int customerId;
@@ -25,7 +31,7 @@ public class CustomerFirstUI {
 		System.out.println("1. View Category");
 		System.out.println("2. Update Profile");
 		System.out.println("3. Search By Category");
-		System.out.println("4. View Category");
+		System.out.println("4. Search By Product");
 		System.out.println("5. View Cart");
 		System.out.println("6. View Bill History");
 		System.out.println("7. Exit");
@@ -39,7 +45,8 @@ public class CustomerFirstUI {
 		
 		switch(choice){
 		case 1:{
-			List<Category> categorylist=customerbl.viewCategory();
+try{		
+	List<Category> categorylist=customerbl.viewCategory();
 			for (Category category : categorylist) {
 				System.out.println(category. getCategoryName());
 			}
@@ -55,43 +62,31 @@ public class CustomerFirstUI {
 				int choice1=sc.nextInt();
 				choice(choice1);
 			}
-			
-//			
-//				//System.out.println("a. Login");
-//			
-//			System.out.println("b. Unsubscribe");
-//			System.out.println("c. Exit");
-//			System.out.println("Press a/b/c");
-//			String ch2=sc.next();
-//			switch(ch2){
-//			case "a":
-//			
-//					System.out.println("Enter your Employee ID");
-//				int userId=sc.nextInt();
-//				System.out.println("Enter your Password");
-//				//char[] passwordChars = console.readPassword();
-//			     //String password = new String(passwordChars);
-//				String password=sc.next();
-//			   
-//			   try {
-//					Info e=b1.validation(userId,password);
-//					if(e!=null){
-//						System.out.println("Login Successful");
-//						System.out.println(" ");
-//						idOb.display(e);
-//						
-//					}
-//					else{
-//						System.out.println("Incorrect UserID or Password Please try again");
-//					}
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-				break;
+}
+catch (SQLException e) {
+	System.out.println("Sorry, somthing went wrong!!!");
+	displayMenu();
+	System.out.println("Enter your choice : ");
+	choice(sc.nextInt());	
+	}
+	break;
+	}
 			
 			
 			case 2:
-				
+				Customer customer= new UpdateCustomerEntry().update();
+				try{	customer.setCustomerId(customerId);
+				status=customerbl.updateDetails(customer);
+				if(status)
+					System.out.println("Details Updated ");
+						else
+							System.out.println("  Not Updated, Please try again!!!1");
+					} catch (ClassNotFoundException | SQLException e) {
+						System.out.println("Sorry, somthing went wrong!!!");
+						displayMenu();
+						System.out.println("Enter your choice : ");
+						choice(sc.nextInt());		
+					}
 				break;
 				
 			
@@ -113,17 +108,55 @@ public class CustomerFirstUI {
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());	
 			}
-			
-			
-			product.viewProduct(pcategory);
 			break;
 		case 4:
-			System.out.println("Exit!!");
-			System.exit(0);
+			System.out.println("Enter the product name you want to search: \n");
+			String productname=sc.next();
+//			Product product=new Product();
+			try{Product product=customerbl.searchProductByName(productname);
+			System.out.println(product);
+			}
+			catch (SQLException e) {
+				System.out.println("Sorry, somthing went wrong!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
+				}
 			break;
+			
+		case 5:
+			try {	List<CartDetails> cartlist;
+			
+				cartlist = customerbl.viewCart(customerId);
+				for (CartDetails clist : cartlist) {
+				System.out.println(clist);		
+			} }
+				catch (SQLException | ClassNotFoundException e) {
+					System.out.println("Sorry, somthing went wrong!!!");
+					displayMenu();
+					System.out.println("Enter your choice : ");
+					choice(sc.nextInt());	
+					}
+				break;
+		case 6:
+			try{List<BillDetails> billList;
+			billList = customerbl.getBillDetails(customerId);
+			for (BillDetails blist : billList) {
+				System.out.println(blist);		
+			} }
+			catch (SQLException | ClassNotFoundException e) {
+				System.out.println("Sorry, somthing went wrong!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
+				}
+			break;
+				
+		case 7:
+			System.exit(0);
 		default:
 			System.out.println("Invalid choice");
 			break;
 		}
-
-}
+		
+}}

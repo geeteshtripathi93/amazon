@@ -68,8 +68,8 @@ public class CustomerBl {
 		return user.insert(customer);
 	}
 
-	public boolean updateDetails() throws ClassNotFoundException, SQLException{
-		Customer customer= new UpdateCustomerEntry().update();
+	public boolean updateDetails(Customer customer) throws ClassNotFoundException, SQLException{
+		
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
