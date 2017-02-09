@@ -60,7 +60,7 @@ public class CustomerFirstUI {
 			}
 }
 catch (SQLException | ClassNotFoundException e) {
-	System.out.println("Sorry, somthing went wrong!!!");
+	System.out.println("Sorry, somthing went wrong!!!  "+e);
 	displayMenu();
 	System.out.println("Enter your choice : ");
 	choice(sc.nextInt());	

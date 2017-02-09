@@ -39,8 +39,9 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public boolean insertCategory(String categoryname) throws SQLException, ClassNotFoundException {
 		con=cd.getCon();
-		pstmt = con.prepareStatement("insert into category values(?)");
-		pstmt.setString(1, categoryname);
+		pstmt = con.prepareStatement("insert into category values(?,?)");
+		pstmt.setString(1,"100");
+		pstmt.setString(2, categoryname);
 		int rows = pstmt.executeUpdate();
 		con.close();
 		if (rows > 0) {
@@ -53,9 +54,10 @@ public class CategoryDaoImpl implements CategoryDao {
 	public boolean deleteCategory(String categoryname) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		con=cd.getCon();
-		Statement stmt = con.createStatement();
-		String sql = "DELETE FROM category " + "WHERE category_name =" + categoryname;
-		int rows = stmt.executeUpdate(sql);
+		pstmt = con.prepareStatement("delete from category where category_name=?");
+		pstmt.setString(1,categoryname);
+		
+		int rows = pstmt.executeUpdate();	
 		if (rows > 0) {
 			return true;
 		}

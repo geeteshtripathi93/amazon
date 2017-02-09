@@ -39,7 +39,7 @@ public class ProductDaoImpl implements ProductDao {
 	public Boolean deleteProduct(int pid) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
 		Statement stmt = con.createStatement();
-		String sql = "DELETE FROM product_info " + "WHERE id =" + pid;
+		String sql = "DELETE FROM product_info " + "WHERE product_id =" + pid;
 		int rows = stmt.executeUpdate(sql);
 		if (rows > 0) {
 			return true;
@@ -51,14 +51,13 @@ public class ProductDaoImpl implements ProductDao {
 	public boolean updateProduct(Product product) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
 		pstmt = con.prepareStatement(
-				"UPDATE PRODUCT_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
+				"UPDATE PRODUCT_INFO SET  product_name=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
 
-		pstmt.setString(2, product.getName());
-		pstmt.setString(3, product.getCategory());
-		pstmt.setDouble(4, product.getPrice());
-		pstmt.setInt(5, product.getQuantity());
-		pstmt.setInt(6, product.getDiscount());
-		pstmt.setInt(1, product.getProductId());
+		pstmt.setString(1, product.getName());
+		pstmt.setDouble(2, product.getPrice());
+		pstmt.setInt(3, product.getQuantity());
+		pstmt.setInt(4, product.getDiscount());
+		pstmt.setInt(5, product.getProductId());
 		int row = pstmt.executeUpdate();
 		con.close();
 		if (row > 0)
@@ -72,11 +71,16 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> prodList = new ArrayList<Product>();
 		con = cd.getCon();
 		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from product_info where product_category= " + pcategory);
+		pstmt = con.prepareStatement("select * from product_info where product_category=?");
+		pstmt.setString(1, pcategory);
+		ResultSet rs =null;
+		if(pcategory== null)
+			 rs = stmt.executeQuery("select * from product_info");
+		else
+			 rs = pstmt.executeQuery();
 		while (rs.next()) {
 			int pid = rs.getInt("product_id");
 			String productname = rs.getString("product_name");
-
 			String category = rs.getString("product_category");
 			int productprice = rs.getInt("product_price");
 			int productquantity = rs.getInt("product_quantity");

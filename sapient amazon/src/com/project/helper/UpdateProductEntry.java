@@ -9,8 +9,10 @@ private Product product=new Product();
 	
 	public Product updateProduct(){
 		Scanner sc=new Scanner(System.in);
-		
-		
+		System.out.println("Enter  Product ID : ");
+		product.setProductId(sc.nextInt());
+		System.out.println("Enter new Product Name : ");
+		product.setName(sc.next());
 		System.out.println("Enter new Product Price : ");
 		product.setPrice(sc.nextDouble());
 		System.out.println("Enter new product Quantity : ");
@@ -21,10 +23,6 @@ private Product product=new Product();
 	}
 
 	
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 	
 	
 }

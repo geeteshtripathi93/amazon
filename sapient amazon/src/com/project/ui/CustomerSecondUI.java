@@ -34,14 +34,14 @@ public class CustomerSecondUI {
 		case 1:
 			int index = 1;
 			try {
-				List<Product> productlist = customerbl.viewProduct(sc.next());
+				System.out.println("Enter category name to view products : ");
+				String category=sc.next();
+				List<Product> productlist = customerbl.viewProduct(category);
 			for (Product product : productlist) {
 				System.out.println((index++) + " " + product.getName());
 			}
 			AddToCart add=new AddToCart();
-			
-			
-				status = customerbl.addToCart(add.addingToCart(customerId));
+			status = customerbl.addToCart(add.addingToCart(customerId));
 			} catch (ClassNotFoundException e) {
 				CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
 				customerSUI.displayMenu();
@@ -82,9 +82,9 @@ public class CustomerSecondUI {
 					System.out.println("Enter your choice : ");
 					customerSUI.choice(sc.nextInt());
 				}
-			return false;
+			return true;
 		case 2:
-			return false;
+			return true;
 			
 		case 3:
 			System.exit(0);
