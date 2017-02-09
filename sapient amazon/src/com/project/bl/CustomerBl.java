@@ -44,8 +44,8 @@ public class CustomerBl {
 		
 	}	
 	
-	public boolean signUp(Customer customer1) throws ClassNotFoundException, SQLException{
-		Customer customer= new CustomerEntry().input();
+	public boolean signUp(Customer customer) throws ClassNotFoundException, SQLException{
+		
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
@@ -62,7 +62,7 @@ public class CustomerBl {
         	System.out.println("Invalid Email ID");
         	return false;
         }
-		return user.insert(customer1);
+		return user.insert(customer);
 	}
 
 	public boolean updateDetails() throws ClassNotFoundException, SQLException{
