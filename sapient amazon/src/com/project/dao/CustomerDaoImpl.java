@@ -17,7 +17,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	private PreparedStatement pstmt = null;
 
 	@Override
-	public boolean insert(Customer customer) throws ClassNotFoundException, SQLException {
+	public int insert(Customer customer) throws ClassNotFoundException, SQLException {
 		connection = createCon.getCon();
 		Statement statement = connection.createStatement();
 		rs = statement.executeQuery("SELECT MAX(CUSTOMER_ID) FROM CUSTOMER_INFO");
@@ -34,25 +34,23 @@ public class CustomerDaoImpl implements CustomerDao {
 		int row = pstmt.executeUpdate();
 		connection.close();
 		if (row > 0)
-			return true;
+			return (cId+1);
 		else
-			return false;
+			return 0;
 
 	}
 
 	@Override
-	public boolean validation(String email, String password) throws ClassNotFoundException, SQLException {
+	public int validation(String email, String password) throws ClassNotFoundException, SQLException {
 
-		pstmt = connection.prepareStatement("SELECT * FROM CUSTOMER_INFO WHERE EMAIL=? AND PASSWORD=?");
+		pstmt = connection.prepareStatement("SELECT Customer_id FROM CUSTOMER_INFO WHERE EMAIL=? AND PASSWORD=?");
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
-
-		int row = pstmt.executeUpdate();
+		rs=pstmt.executeQuery();
+		rs.next();
+		int customerId = rs.getInt(1);
 		connection.close();
-		if (row > 0)
-			return true;
-		else
-			return false;
+		return customerId;
 	}
 
 	@Override
@@ -73,5 +71,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			return false;
 
 	}
+
+	
 
 }
