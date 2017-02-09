@@ -20,7 +20,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	
 	
 	
-	public List<Category> viewCategory()throws SQLException{
+	public List<Category> viewCategory(Category category)throws SQLException{
 		
 		List<Category> categoryList = new ArrayList<Category>();
 		Statement stmt = con.createStatement();
@@ -64,12 +64,9 @@ public class CategoryDaoImpl implements CategoryDao {
 	
 	}
 
-	@Override
-	public List<Category> viewCategory(Category category) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
+	
 
 	
 	
