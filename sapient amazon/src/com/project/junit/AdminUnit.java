@@ -28,13 +28,13 @@ public class AdminUnit {
 		adminDao = null;
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = Exception.class)
 	public void positiveTestValidation() throws ClassNotFoundException, SQLException {
 		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
 		assertTrue(adminDao.validation("hsh", "ghsg"));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = Exception.class)
 	public void negativeTestValidation() throws ClassNotFoundException, SQLException {
 		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
 		assertFalse(adminDao.validation("hsh", "ghs"));
