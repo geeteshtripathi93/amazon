@@ -15,17 +15,16 @@ import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerFirstUI {
 	
-boolean status =false;
+	public CustomerFirstUI(int customerId) {
+		
+		this.customerId= customerId;
+		
+	}
+	
+	private boolean status =false;
 	private	Scanner sc = null;
 	private CustomerBl customerbl = new CustomerBl();
 	private int customerId;
-	
-	
-		public CustomerFirstUI(int customerId) {
-			
-			this.customerId= customerId;
-			
-		}
 
 	public void displayMenu() {
 		System.out.println("1. View Category");
@@ -45,18 +44,15 @@ boolean status =false;
 		
 		switch(choice){
 		case 1:{
-try{		
-	List<Category> categorylist=customerbl.viewCategory();
+				try{		
+			List<Category> categorylist=customerbl.viewCategory();
 			for (Category category : categorylist) {
 				System.out.println(category. getCategoryName());
 			}
-			
-
-
-			CustomerSecondPage customersecond= new CustomerSecondPage();
+			CustomerSecondUI customersecond= new CustomerSecondUI(customerId);
 			customersecond.displayMenu(); 
 			int choice2=sc.nextInt();
-			boolean check=customersecond.choice(choice, customerbl);
+			boolean check=customersecond.choice(choice);
 			if(check){
 				displayMenu();
 				int choice1=sc.nextInt();

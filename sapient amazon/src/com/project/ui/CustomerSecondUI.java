@@ -62,7 +62,17 @@ public class CustomerSecondUI {
 					System.out.println(cartDetails);
 				}
 				// call pay ui
-				
+				ProceedToPay paymentUI = new ProceedToPay();
+				paymentUI.display();
+				try {
+					paymentUI.payOption(customerId);
+				} catch (ClassNotFoundException e) {
+					CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
+					customerSUI.displayMenu();
+					System.out.println("Enter your choice : ");
+					 status=customerSUI.choice(sc.nextInt());
+					 
+				}
 			}
 				else{
 					System.out.println("Sorrry, somthing went wrong!!!!");
@@ -83,6 +93,10 @@ public class CustomerSecondUI {
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
 		}
+		CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
+		customerSUI.displayMenu();
+		System.out.println("Enter your choice : ");
+		customerSUI.choice(sc.nextInt());
 		return false;
 	}
 }
