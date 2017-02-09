@@ -8,7 +8,7 @@ import com.project.bl.CustomerBl;
 
 public class CustomerFirstUI {
 	Scanner sc = null;
-	CustomerBl customerbl = new CustomerBl();
+	CustomerBl customerbl = new CustomerBl(customerId);
 
 	public void displayMenu() {
 		System.out.println("1. View Category");
@@ -79,7 +79,7 @@ public class CustomerFirstUI {
 				break;
 			
 			
-			case "b":
+			case 2:
 				System.out.println("Enter your Employee  ID");
 				int eId=sc.nextInt();
 				System.out.println("Enter your Password");

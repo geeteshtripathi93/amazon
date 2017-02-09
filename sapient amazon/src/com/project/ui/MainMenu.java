@@ -27,11 +27,17 @@ public class MainMenu {
 		String email;
 		String password;
 		switch (ch) {
+<<<<<<< HEAD
 		
 		case 1:
 			boolean status;
 			System.out.println("Enter your email id/username : ");
 			email = sc.next();
+=======
+		case 1:
+		System.out.println("Enter your email id/username : ");
+			String email = sc.next();
+>>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 			System.out.println("Enter your password : ");
 			password = sc.next();
 			try {

@@ -12,6 +12,13 @@ public class BillDetails {
 	private double totalPrice;
 	private Date date;
 
+	@Override
+	public String toString() {
+		return "BillDetails [customerId=" + customerId + ", billId=" + billId + ", productId=" + productId + ", price="
+				+ price + ", discount=" + discount + ", quantity=" + quantity + ", totalPrice=" + totalPrice + ", date="
+				+ date + "]";
+	}
+
 	public int getCustomerId() {
 		return customerId;
 	}
