@@ -7,12 +7,13 @@ public class Customer {
 	private String email;
 	private String password;
 	private String phoneNumber;
-	
-	public Customer(){
-		
+
+	public Customer() {
+
 	}
-	 
-	public Customer (int customerId, String firstName, String lastName, String email, String password, String phoneNumber) {
+
+	public Customer(int customerId, String firstName, String lastName, String email, String password,
+			String phoneNumber) {
 		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;

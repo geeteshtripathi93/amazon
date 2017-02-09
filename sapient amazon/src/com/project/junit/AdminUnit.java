@@ -28,16 +28,21 @@ public class AdminUnit {
 		adminDao = null;
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void positiveTestValidation() throws ClassNotFoundException, SQLException {
-		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
-		assertTrue(adminDao.validation("hsh", "ghsg"));
+//		customer = new Customer(4, "aa", "ll", "hsh@abc.com", "password", "5111614205");
+		assertTrue(adminDao.validation("abc@xyz.com", "password"));
 	}
 
-	@Test(expected = Exception.class)
-	public void negativeTestValidation() throws ClassNotFoundException, SQLException {
-		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "561420");
-		assertFalse(adminDao.validation("hsh", "ghs"));
+	@Test
+	public void emailTestValidation() throws ClassNotFoundException, SQLException {
+//		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "5614204545");
+		assertFalse(adminDao.validation("hsh", "password"));
 	}
 
+	@Test
+	public void passwordTestValidation() throws ClassNotFoundException, SQLException {
+//		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "5614204545");
+		assertFalse(adminDao.validation("abc@xyz.com", "1password"));
+	}
 }

@@ -30,11 +30,11 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public boolean update(Admin admin) throws SQLException {
-
+	public boolean update(Admin admin) throws SQLException, ClassNotFoundException {
+		connection = createCon.getCon();
 		pstmt = connection.prepareStatement("UPDATE ADMIN_INFO SET PASSWORD=? WHERE EMAIL=?");
-		pstmt.setString(1, admin.getMail());
-		pstmt.setString(2, admin.getPassword());
+		pstmt.setString(2, admin.getMail());
+		pstmt.setString(1, admin.getPassword());
 		int row = pstmt.executeUpdate();
 		connection.close();
 		if (row > 0)

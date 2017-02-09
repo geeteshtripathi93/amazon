@@ -30,7 +30,7 @@ public class AdminBL {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         if(m.matches()){
-        	return admin1.validation(email, password);
+			return admin1.validation(email, password);
         }
         else 
         	System.out.println("email ID is not valid");
@@ -38,8 +38,8 @@ public class AdminBL {
         return false;
 	}	
 	
-	public boolean updatePassword(Admin admin) throws SQLException{
-		if((admin.getPassword().length()<8))
+	public boolean updatePassword(Admin admin) throws ClassNotFoundException,SQLException{
+		if((admin.getPassword().length()<8) || admin.getPassword() == null)
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
 			return false;
