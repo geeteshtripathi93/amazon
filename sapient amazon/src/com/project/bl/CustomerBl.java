@@ -24,10 +24,8 @@ import com.project.helper.AddToCart;
 import com.project.helper.CustomerEntry;
 
 public class CustomerBl {
-			public CustomerBl(int customerId) {
-			this.customerId=customerId;
-			}
-			private int customerId;
+			
+	private int customerId;
 	private CustomerDao user = new CustomerDaoImpl();
 	private CartDao cart= new CartDaoImpl();	
 	private CategoryDao category1= new CategoryDaoImpl();
@@ -94,8 +92,8 @@ public class CustomerBl {
 		return cart.viewCart(customerId);
 	}
 	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException{
-	AddToCart add=new AddToCart();
-		return cart.addToCart(add.addingToCart(customerId));
+	
+		return cart.addToCart(cartList);
 	}
 	public boolean removeFromCart(int productId,int customerId) throws SQLException{
 		return cart.removeFromCart(productId, customerId);
