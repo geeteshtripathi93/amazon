@@ -64,6 +64,12 @@ public class CategoryDaoImpl implements CategoryDao {
 	
 	}
 
+	@Override
+	public List<Category> viewCategory(Category category) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 	
