@@ -1,23 +1,36 @@
 package com.project.ui;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.project.bean.BillDetails;
+import com.project.bean.CartDetails;
 import com.project.bean.Category;
+import com.project.bean.Customer;
+import com.project.bean.Product;
+import com.project.bl.AdminBL;
 import com.project.bl.CustomerBl;
+import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerFirstUI {
-	Scanner sc = null;
-	CustomerBl customerbl = new CustomerBl();
+	
+	public CustomerFirstUI(int customerId) {
+		
+		this.customerId= customerId;
+		
+	}
+	
+	private boolean status =false;
+	private	Scanner sc = null;
+	private CustomerBl customerbl = new CustomerBl();
+	private int customerId;
 
 	public void displayMenu() {
-Scanner sc=null;
-CustomerBl customerbl=new CustomerBl();
-	public void displayMenu(){
 		System.out.println("1. View Category");
 		System.out.println("2. Update Profile");
 		System.out.println("3. Search By Category");
-		System.out.println("4. View Category");
+		System.out.println("4. Search By Product");
 		System.out.println("5. View Cart");
 		System.out.println("6. View Bill History");
 		System.out.println("7. Exit");
@@ -31,146 +44,118 @@ CustomerBl customerbl=new CustomerBl();
 		
 		switch(choice){
 		case 1:{
+				try{		
 			List<Category> categorylist=customerbl.viewCategory();
 			for (Category category : categorylist) {
 				System.out.println(category. getCategoryName());
 			}
+			CustomerSecondUI customersecond= new CustomerSecondUI(customerId);
+			customersecond.displayMenu(); 
+			int choice2=sc.nextInt();
+			boolean check=customersecond.choice(choice);
+			if(check){
+				displayMenu();
+				int choice1=sc.nextInt();
+				choice(choice1);
+			}
+}
+catch (SQLException | ClassNotFoundException e) {
+	System.out.println("Sorry, somthing went wrong!!!");
+	displayMenu();
+	System.out.println("Enter your choice : ");
+	choice(sc.nextInt());	
+	}
+	break;
+	}
 			
-			System.out.println("Choose category");
-//			
-//				//System.out.println("a. Login");
-//			
-//			System.out.println("b. Unsubscribe");
-//			System.out.println("c. Exit");
-//			System.out.println("Press a/b/c");
-//			String ch2=sc.next();
-//			switch(ch2){
-//			case "a":
-//			
-//					System.out.println("Enter your Employee ID");
-//				int userId=sc.nextInt();
-//				System.out.println("Enter your Password");
-//				//char[] passwordChars = console.readPassword();
-//			     //String password = new String(passwordChars);
-//				String password=sc.next();
-//			   
-//			   try {
-//					Info e=b1.validation(userId,password);
-//					if(e!=null){
-//						System.out.println("Login Successful");
-//						System.out.println(" ");
-//						idOb.display(e);
-//						
-//					}
-//					else{
-//						System.out.println("Incorrect UserID or Password Please try again");
-//					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			
+			case 2:
+				Customer customer= new UpdateCustomerEntry().update();
+				try{	customer.setCustomerId(customerId);
+				status=customerbl.updateDetails(customer);
+				if(status)
+					System.out.println("Details Updated ");
+						else
+							System.out.println("  Not Updated, Please try again!!!1");
+					} catch (ClassNotFoundException | SQLException e) {
+						System.out.println("Sorry, somthing went wrong!!!");
+						displayMenu();
+						System.out.println("Enter your choice : ");
+						choice(sc.nextInt());		
+					}
 				catch(ClassNotFoundException e){
 					e.printStackTrace();
 				}
 				break;
+				
 			
 			
-			case "b":
-				System.out.println("Enter your Employee  ID");
-				int eId=sc.nextInt();
-				System.out.println("Enter your Password");
-				
-				String pswd=sc.next();
-			   
-			   try {
-					Info e=b1.validation(eId,pswd);
-					if(e!=null){
-						int dp=e.getParkNo();
-						idOb.delPark(dp);
-						System.out.println("You are not a signee anymore!!!");
-						
-					}
-					else{
-						System.out.println("You are not a Signee!!!");
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
+		
+		case 3:System.out.println("Enter the category name you want to search: \n");
+			String category=sc.next();
+			List<Product> productlist;
+			try {
+				productlist = customerbl.viewProduct(category);
+				for (Product prodlist : productlist) {
+				System.out.println(prodlist);		
+			} 
+				// Choose Category
+			}
+			catch (SQLException | ClassNotFoundException e) {
+			System.out.println("Sorry, somthing went wrong!!!");
+			displayMenu();
+			System.out.println("Enter your choice : ");
+			choice(sc.nextInt());	
+			}
+			break;
+		case 4:
+			System.out.println("Enter the product name you want to search: \n");
+			String productname=sc.next();
+//			Product product=new Product();
+			try{Product product=customerbl.searchProductByName(productname);
+			System.out.println(product);
+			}
+			catch (SQLException | ClassNotFoundException e) {
+				System.out.println("Sorry, somthing went wrong!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
 				}
-				
-				try {
-					Boolean tf=b1.unsubscribe(eId);
-					if(tf){
-						
-						System.out.println("You have unsubscribed");
+			break;
+			
+		case 5:
+			try {	List<CartDetails> cartlist;
+			
+				cartlist = customerbl.viewCart(customerId);
+				for (CartDetails clist : cartlist) {
+				System.out.println(clist);		
+			} }
+				catch (SQLException | ClassNotFoundException e) {
+					System.out.println("Sorry, somthing went wrong!!!");
+					displayMenu();
+					System.out.println("Enter your choice : ");
+					choice(sc.nextInt());	
 					}
-					
-				} catch (SQLException e) {
-					e.printStackTrace();
+				break;
+		case 6:
+			try{List<BillDetails> billList;
+			billList = customerbl.getBillDetails(customerId);
+			for (BillDetails blist : billList) {
+				System.out.println(blist);		
+			} }
+			catch (SQLException | ClassNotFoundException e) {
+				System.out.println("Sorry, somthing went wrong!!!");
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
 				}
-				break;
-				
-			case "c":
-				System.out.println("Exit!!");
-				System.exit(0);
-				break;
-			default :System.out.println("Invalid choice");
 			break;
 				
-			}}break;case 2:try
-
-	{
-		try {
-			idOb.input();
-		} catch (ClassNotFoundException e) {
-			System.out.println("Sorry Record Not Inserted");
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			System.out.println("Sorry Record Not Inserted");
-			e.printStackTrace();
+		case 7:
+			System.exit(0);
+		default:
+			System.out.println("Invalid choice");
+			break;
 		}
-		boolean status = b2.add(idOb.getEmployee());
-		if (status) {
-			System.out.println("Congratulations your Space have been Reserved!!! ");
-		}
-	}catch(
-	SQLException e)
-	{
-		System.out.println("Sorry Record Not Inserted");
-		e.printStackTrace();
-	}break;case 3:try
-	{
-		gdOb.input();
-		boolean status = b3.add(gdOb.getGuest());
-		if (status) {
-			System.out.println(gdOb.getGuest());
-			System.out.println("Congratulations your Space have been Reserved!!! ");
-			System.out.println("To Cancel Booking Press 1 else Press 0 : ");
-			int i = sc.nextInt();
-			if (i == 1) {
-				System.out.println("Enter vehicle number : ");
-				String vehicleNo = null;
-				vehicleNo = sc.next();
-				try {
-
-					Guest g = b3.cancelBookingBl(gdOb.getGuest(), vehicleNo);
-					if (g != null) {
-
-						System.out.println("You have Cancelled your Booking");
-					}
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-
-			}
-		}
-	}catch(
-	SQLException e)
-	{
-		System.out.println("Sorry Record Not Inserted");
-		e.printStackTrace();
-	}break;case 4:System.out.println("Exit!!");System.exit(0);break;default:System.out.println("Invalid choice");break;
-}
-
-}
+		
+}}

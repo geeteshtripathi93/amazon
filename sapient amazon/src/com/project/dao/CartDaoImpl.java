@@ -38,8 +38,8 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public boolean removeFromCart(int productId,int customerId) throws SQLException{
-	
+	public boolean removeFromCart(int productId,int customerId) throws SQLException, ClassNotFoundException{
+		connection = createCon.getCon();
 		Statement stmt=connection.createStatement();
 		String sql = "DELETE FROM cart" +"WHERE product_id ="+productId+"AND"+"customer_Id="+customerId;
 		int rows=stmt.executeUpdate(sql);

@@ -12,6 +12,12 @@ public class Cart {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Cart [customerId=" + customerId + ", productId=" + productId + ", quantity=" + quantity + ", cartDate="
+				+ cartDate + "]";
+	}
+
 	public Cart(int customerId, int productId, int quantity, Date cartDate) {
 		super();
 		this.customerId = customerId;

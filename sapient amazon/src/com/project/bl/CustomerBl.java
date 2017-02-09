@@ -20,17 +20,20 @@ import com.project.dao.CustomerDao;
 import com.project.dao.CustomerDaoImpl;
 import com.project.dao.ProductDao;
 import com.project.dao.ProductDaoImpl;
+import com.project.helper.AddToCart;
 import com.project.helper.CustomerEntry;
+import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerBl {
-
+			
+	private int customerId;
 	private CustomerDao user = new CustomerDaoImpl();
 	private CartDao cart= new CartDaoImpl();	
 	private CategoryDao category1= new CategoryDaoImpl();
 	private BillDao bill= new BillDaoImpl(); 
 	private ProductDao product=new ProductDaoImpl();
 	
-	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException{
+	public int signIn(String email, String password) throws ClassNotFoundException, SQLException{
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
@@ -40,33 +43,33 @@ public class CustomerBl {
         else 
         	System.out.println("email ID is not valid");
 			
-        return false;
+        return 0;
 		
 	}	
 	
-	public boolean signUp(Customer customer) throws ClassNotFoundException, SQLException{
+	public int signUp(Customer customer) throws ClassNotFoundException, SQLException{
 		
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
-			return false;
+			return 0;
 		}
 		if(customer.getPhoneNumber().contains("[a-zA-Z]+") == true||customer.getPhoneNumber().length()<10){
 			System.out.println("Please check Phone Number");
-			return false;
+			return 0;
 		}
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(customer.getEmail());
         if(!m.matches()){
         	System.out.println("Invalid Email ID");
-        	return false;
+        	return 0;
         }
 		return user.insert(customer);
 	}
 
-	public boolean updateDetails() throws ClassNotFoundException, SQLException{
-		Customer customer= new CustomerEntry().input();
+	public boolean updateDetails(Customer customer) throws ClassNotFoundException, SQLException{
+		
 		if((customer.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
@@ -90,12 +93,13 @@ public class CustomerBl {
 		return cart.viewCart(customerId);
 	}
 	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException{
+	
 		return cart.addToCart(cartList);
 	}
-	public boolean removeFromCart(int productId,int customerId) throws SQLException{
+	public boolean removeFromCart(int productId,int customerId) throws ClassNotFoundException, SQLException{
 		return cart.removeFromCart(productId, customerId);
 	}
-	public List<Category> viewCategory() throws SQLException{
+	public List<Category> viewCategory() throws ClassNotFoundException,SQLException{
 		return category1.viewCategory();
 	}
 	
@@ -110,10 +114,10 @@ public class CustomerBl {
 		return bill.getCurrentBill(bill1);
 	}
 	
-	public List<Product> viewProduct(String pcategory) throws SQLException{
+	public List<Product> viewProduct(String pcategory) throws ClassNotFoundException, SQLException{
 		return product.viewProduct(pcategory);
 	}
-	public Product searchProductByName(String productName) throws SQLException{
+	public Product searchProductByName(String productName) throws ClassNotFoundException,SQLException{
 		return product.searchProductByName(productName);
 	}
 

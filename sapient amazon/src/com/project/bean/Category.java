@@ -18,6 +18,11 @@ public class Category {
 		super();
 		CategoryName = categoryName;
 	}
+
+	@Override
+	public String toString() {
+		return "Category [CategoryName=" + CategoryName + "]";
+	}
 	
 	
 	

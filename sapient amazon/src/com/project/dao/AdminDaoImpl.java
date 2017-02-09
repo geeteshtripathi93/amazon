@@ -18,7 +18,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public boolean validation(String email, String password) throws ClassNotFoundException, SQLException {
 		connection = createCon.getCon();
-		pstmt = connection.prepareStatement("SELECT * FROM ADMIN_INFO WHERE EMAIL=? AND PASSWORD=?");
+		pstmt = connection.prepareStatement("SELECT * FROM ADMIN_INFO WHERE MAIL=? AND PASSWORD=?");
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
 		int row = pstmt.executeUpdate();

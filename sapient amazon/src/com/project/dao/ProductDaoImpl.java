@@ -17,7 +17,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 
 	public boolean addProduct(Product product) throws SQLException, ClassNotFoundException {
-		
+		con = cd.getCon();
 		pstmt = con.prepareStatement("insert into product_info  values(?,?,?,?,?,?)");
 		pstmt.setInt(1, product.getProductId());
 		pstmt.setString(2, product.getName());
@@ -36,7 +36,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Boolean deleteProduct(int pid) throws SQLException {
+	public Boolean deleteProduct(int pid) throws SQLException, ClassNotFoundException {
+		con = cd.getCon();
 		Statement stmt = con.createStatement();
 		String sql = "DELETE FROM product_info " + "WHERE id =" + pid;
 		int rows = stmt.executeUpdate(sql);
@@ -47,8 +48,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public boolean updateProduct(Product product) throws SQLException {
-		
+	public boolean updateProduct(Product product) throws SQLException, ClassNotFoundException {
+		con = cd.getCon();
 		pstmt = con.prepareStatement(
 				"UPDATE PRODUCT_INFO SET  product_name=?, product_category=?,product_price=? , product_quantity=?,product_discount=? WHERE product_id=?");
 
@@ -67,8 +68,9 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> viewProduct(String pcategory) throws SQLException {
+	public List<Product> viewProduct(String pcategory) throws SQLException, ClassNotFoundException {
 		List<Product> prodList = new ArrayList<Product>();
+		con = cd.getCon();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from product_info where product_category= " + pcategory);
 		while (rs.next()) {
@@ -92,8 +94,8 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product searchProductByName(String productName) throws SQLException {
-		
+	public Product searchProductByName(String productName) throws SQLException, ClassNotFoundException {
+		con = cd.getCon();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from product_info where product_name= " +productName );
 		while (rs.next()) {

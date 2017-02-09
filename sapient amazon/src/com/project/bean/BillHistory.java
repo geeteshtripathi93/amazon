@@ -11,6 +11,12 @@ public class BillHistory {
 
 	}
 
+	@Override
+	public String toString() {
+		return "BillHistory [billId=" + billId + ", productId=" + productId + ", quantity=" + quantity + ", discount="
+				+ discount + ", productPrice=" + productPrice + "]";
+	}
+
 	public BillHistory(int billId, int productId, int quantity, int discount, double productPrice) {
 		super();
 		this.billId = billId;

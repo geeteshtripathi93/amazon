@@ -8,10 +8,10 @@ import com.project.bean.Product;
 
 public interface ProductDao {
 boolean addProduct(Product p)throws SQLException,ClassNotFoundException;
-Boolean deleteProduct(int pid)throws SQLException;
-boolean updateProduct(Product p)throws SQLException;
-List<Product> viewProduct(String category)throws SQLException;
-Product searchProductByName(String product)throws SQLException;
+Boolean deleteProduct(int pid)throws ClassNotFoundException, SQLException;
+boolean updateProduct(Product p)throws ClassNotFoundException,SQLException;
+List<Product> viewProduct(String category)throws ClassNotFoundException,SQLException;
+Product searchProductByName(String product)throws ClassNotFoundException,SQLException;
 
 
 }
