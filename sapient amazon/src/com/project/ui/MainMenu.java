@@ -1,8 +1,6 @@
 package com.project.ui;
-
 import java.sql.SQLException;
 import java.util.Scanner;
-
 import com.project.bean.Customer;
 import com.project.bl.AdminBL;
 import com.project.bl.CustomerBl;
@@ -16,37 +14,32 @@ public class MainMenu {
 	private AdminBL adminBl = new AdminBL();
 	public void displayMenu() {
 		System.out.println("WELCOME TO AMAZON");
-
 		System.out.println("1: Sign In As Admin. \n2: Sign In As Customer. \n3: SignUp As Customer \n4: Exit");
 	}
 
 	public void choice(int ch) {
 		
-		
 		int customerId=0;
 		String email;
 		String password;
+		boolean status;
 		switch (ch) {
-<<<<<<< HEAD
-		
+
 		case 1:
-			boolean status;
-			System.out.println("Enter your email id/username : ");
-			email = sc.next();
-=======
-		case 1:
-		System.out.println("Enter your email id/username : ");
-			String email = sc.next();
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
-			System.out.println("Enter your password : ");
-			password = sc.next();
-			try {
-			status=	adminBl.signIn(email, password);
-			if (status) {
+				System.out.println("Enter your email id/username : ");
+				email = sc.next();
+				System.out.println("Enter your password : ");
+				password = sc.next();
+				try {
+					status =	adminBl.signIn(email, password);
+					if (status) {
 				System.out.println("signed In");
-				// call admin first ui 
-			} else {
-				System.out.println("Sorry, Please try again!!!!");
+				AdminFirstUI adminFUI= new AdminFirstUI();
+				adminFUI.displayMenu();
+				System.out.println("Enter your Choice :  ");
+				adminFUI.choice(sc.nextInt());
+					} else {
+						System.out.println("Sorry, Please try again!!!!");
 				System.out.println("INVALID OPTION");
 				displayMenu();
 				System.out.println("Enter your choice : ");
@@ -61,10 +54,6 @@ public class MainMenu {
 				mainMenu.choice(ch);
 			}
 			break;
-	
-		
-		
-		
 		case 2:
 	
 			System.out.println("Enter your email id/username : ");
@@ -75,7 +64,10 @@ public class MainMenu {
 			customerId=	customerBl.signIn(email, password);
 			if (customerId!=0) {
 				System.out.println("signed In");
-				// call first customerUI 
+			CustomerFirstUI customerFUI = new CustomerFirstUI(customerId);
+			customerFUI.displayMenu();
+			System.out.println("Enter your choice : ");
+			customerFUI.choice(sc.nextInt());
 				
 			} else {
 				System.out.println("Sorry, Please try again!!!!");
@@ -99,7 +91,10 @@ public class MainMenu {
 				customerId=customerBl.signUp(customer);
 				if (customerId!=0) {
 					System.out.println("signed Up!!! ");
-					// call first customer UI
+					CustomerFirstUI customerFUI = new CustomerFirstUI(customerId);
+					customerFUI.displayMenu();
+					System.out.println("Enter your choice : ");
+					customerFUI.choice(sc.nextInt());
 				} else {
 					System.out.println("Sorry, Please try again!!!!");
 					System.out.println("INVALID OPTION");
