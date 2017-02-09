@@ -59,7 +59,7 @@ public class CustomerFirstUI {
 				choice(choice1);
 			}
 }
-catch (SQLException e) {
+catch (SQLException | ClassNotFoundException e) {
 	System.out.println("Sorry, somthing went wrong!!!");
 	displayMenu();
 	System.out.println("Enter your choice : ");
@@ -98,7 +98,7 @@ catch (SQLException e) {
 			} 
 				// Choose Category
 			}
-			catch (SQLException e) {
+			catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Sorry, somthing went wrong!!!");
 			displayMenu();
 			System.out.println("Enter your choice : ");
@@ -112,7 +112,7 @@ catch (SQLException e) {
 			try{Product product=customerbl.searchProductByName(productname);
 			System.out.println(product);
 			}
-			catch (SQLException e) {
+			catch (SQLException | ClassNotFoundException e) {
 				System.out.println("Sorry, somthing went wrong!!!");
 				displayMenu();
 				System.out.println("Enter your choice : ");

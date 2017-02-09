@@ -50,7 +50,7 @@ public class AdminFirstUI {
 				} 
 					// Choose Category
 				}
-				catch (SQLException e) {
+				catch (SQLException | ClassNotFoundException e) {
 				System.out.println("Sorry, somthing went wrong!!!");
 				displayMenu();
 				System.out.println("Enter your choice : ");
@@ -105,7 +105,7 @@ public class AdminFirstUI {
 				} 
 					// Choose Category
 				}
-				catch (SQLException e) {
+				catch (SQLException | ClassNotFoundException e) {
 				System.out.println("Sorry, somthing went wrong!!!");
 				displayMenu();
 				System.out.println("Enter your choice : ");
@@ -142,7 +142,7 @@ public class AdminFirstUI {
           				System.out.println(" Product Added");
           					else
           						System.out.println("  Not Added, Please try again!!!1");
-          				} catch (SQLException e) {
+          				} catch (SQLException | ClassNotFoundException e) {
           					System.out.println("Sorry, somthing went wrong!!!");
           					displayMenu();
           					System.out.println("Enter your choice : ");
@@ -157,7 +157,7 @@ public class AdminFirstUI {
 					System.out.println(" Product updated");
 						else
 							System.out.println("  Not updated, Please try again!!!1");
-					} catch (SQLException e) {
+					} catch (SQLException | ClassNotFoundException e) {
 						System.out.println("Sorry, somthing went wrong!!!");
 						displayMenu();
 						System.out.println("Enter your choice : ");
@@ -198,7 +198,7 @@ public class AdminFirstUI {
 					System.out.println(" Password updated");
 						else
 							System.out.println("  Not updated, Please try again!!!1");
-					} catch (SQLException e) {
+					} catch (SQLException | ClassNotFoundException e) {
 						System.out.println("Sorry, somthing went wrong!!!");
 						displayMenu();
 						System.out.println("Enter your choice : ");

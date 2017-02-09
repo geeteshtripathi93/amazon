@@ -38,7 +38,7 @@ public class AdminBL {
         return false;
 	}	
 	
-	public boolean updatePassword(Admin admin) throws SQLException{
+	public boolean updatePassword(Admin admin) throws SQLException, ClassNotFoundException{
 		if((admin.getPassword().length()<8))
 		{
 			System.out.println("Password needs to be atleast 8 character longer");
@@ -52,7 +52,7 @@ public class AdminBL {
 	}
 	
 	
-	public List<Category> viewCategory()throws SQLException{
+	public List<Category> viewCategory()throws ClassNotFoundException,SQLException{
 		return category1.viewCategory();
 		
 	}
@@ -69,16 +69,16 @@ public class AdminBL {
 	}
 	
 	
-	public List<Product> viewProduct(String pcategory) throws SQLException{
+	public List<Product> viewProduct(String pcategory) throws ClassNotFoundException,SQLException{
 		return  product1.viewProduct(pcategory);	
 	}
 	
-	public boolean updateProduct(Product product) throws SQLException{
+	public boolean updateProduct(Product product) throws ClassNotFoundException,SQLException{
 		return product1.updateProduct(product);
 		
 	}
 	
-	public Boolean deleteProduct(int pid) throws SQLException{
+	public Boolean deleteProduct(int pid) throws ClassNotFoundException,SQLException{
 		return product1.deleteProduct(pid);	
 	}
 	

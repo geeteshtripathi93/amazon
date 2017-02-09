@@ -33,13 +33,14 @@ public class CustomerSecondUI {
 		switch (ch) {
 		case 1:
 			int index = 1;
-			List<Product> productlist = customerbl.viewProduct(sc.next());
+			try {
+				List<Product> productlist = customerbl.viewProduct(sc.next());
 			for (Product product : productlist) {
 				System.out.println((index++) + " " + product.getName());
 			}
 			AddToCart add=new AddToCart();
 			
-			try {
+			
 				status = customerbl.addToCart(add.addingToCart(customerId));
 			} catch (ClassNotFoundException e) {
 				CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);

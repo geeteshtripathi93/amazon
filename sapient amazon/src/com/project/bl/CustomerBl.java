@@ -96,10 +96,10 @@ public class CustomerBl {
 	
 		return cart.addToCart(cartList);
 	}
-	public boolean removeFromCart(int productId,int customerId) throws SQLException{
+	public boolean removeFromCart(int productId,int customerId) throws ClassNotFoundException, SQLException{
 		return cart.removeFromCart(productId, customerId);
 	}
-	public List<Category> viewCategory() throws SQLException{
+	public List<Category> viewCategory() throws ClassNotFoundException,SQLException{
 		return category1.viewCategory();
 	}
 	
@@ -114,10 +114,10 @@ public class CustomerBl {
 		return bill.getCurrentBill(bill1);
 	}
 	
-	public List<Product> viewProduct(String pcategory) throws SQLException{
+	public List<Product> viewProduct(String pcategory) throws ClassNotFoundException, SQLException{
 		return product.viewProduct(pcategory);
 	}
-	public Product searchProductByName(String productName) throws SQLException{
+	public Product searchProductByName(String productName) throws ClassNotFoundException,SQLException{
 		return product.searchProductByName(productName);
 	}
 

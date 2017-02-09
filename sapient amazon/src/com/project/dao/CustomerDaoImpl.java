@@ -42,7 +42,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public int validation(String email, String password) throws ClassNotFoundException, SQLException {
-
+		connection = createCon.getCon();
 		pstmt = connection.prepareStatement("SELECT Customer_id FROM CUSTOMER_INFO WHERE EMAIL=? AND PASSWORD=?");
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
@@ -55,7 +55,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public boolean update(Customer customer) throws ClassNotFoundException, SQLException {
-
+		connection = createCon.getCon();
 		pstmt = connection.prepareStatement(
 				"UPDATE CUSTOMER_INFO SET FIRST_NAME=?, LAST_NAME=?,PASSWORD=? , PHONE_NUMBER=? WHERE MAIL=?");
 		pstmt.setString(1, customer.getFirstName());
