@@ -8,6 +8,8 @@ import com.project.bean.Category;
 import com.project.bean.Customer;
 import com.project.bean.Product;
 import com.project.bl.CustomerBl;
+import com.project.dao.CartDaoImpl;
+import com.project.helper.AddToCart;
 
 public class CustomerSecondPage {
 	CustomerBl customerbl = new CustomerBl();
@@ -31,7 +33,9 @@ public class CustomerSecondPage {
 			for (Product product : productlist) {
 				System.out.println((index++) + " " + product.getName());
 			}
-			addToCartMenu cartMenu=new  addToCartMenu();
+	
+			AddToCart add=new AddToCart();
+			customerbl.addToCart(add.addingToCart(customerId));
 			return false;
 		case 2:
 			return true;
