@@ -20,6 +20,7 @@ import com.project.dao.CustomerDao;
 import com.project.dao.CustomerDaoImpl;
 import com.project.dao.ProductDao;
 import com.project.dao.ProductDaoImpl;
+import com.project.helper.AddToCart;
 import com.project.helper.CustomerEntry;
 
 public class CustomerBl {
@@ -93,7 +94,8 @@ public class CustomerBl {
 		return cart.viewCart(customerId);
 	}
 	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException{
-		return cart.addToCart(cartList);
+	AddToCart add=new AddToCart();
+		return cart.addToCart(add.addingToCart(customerId));
 	}
 	public boolean removeFromCart(int productId,int customerId) throws SQLException{
 		return cart.removeFromCart(productId, customerId);

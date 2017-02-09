@@ -7,9 +7,10 @@ import com.project.bean.Category;
 import com.project.bl.CustomerBl;
 
 public class CustomerFirstUI {
-Scanner sc=null;
-CustomerBl customerbl=new CustomerBl();
-	public void displayMenu(){
+	Scanner sc = null;
+	CustomerBl customerbl = new CustomerBl();
+
+	public void displayMenu() {
 		System.out.println("1. View Category");
 		System.out.println("2. Update Profile");
 		System.out.println("3. Search By Category");
@@ -17,10 +18,10 @@ CustomerBl customerbl=new CustomerBl();
 		System.out.println("5. View Cart");
 		System.out.println("6. View Bill History");
 		System.out.println("7. Exit");
-		
+
 		System.out.println("Press 1/2/3/4/5/6/7");
 	}
-	
+
 	public void choice(int choice){
 		
 		sc=new Scanner(System.in);
@@ -36,7 +37,13 @@ CustomerBl customerbl=new CustomerBl();
 
 			CustomerSecondPage customersecond= new CustomerSecondPage();
 			customersecond.displayMenu(); 
-			
+			int choice2=sc.nextInt();
+			boolean check=customersecond.choice(choice, customerbl);
+			if(check){
+				displayMenu();
+				int choice1=sc.nextInt();
+				choice(choice1);
+			}
 			
 //			
 //				//System.out.println("a. Login");
@@ -178,8 +185,5 @@ CustomerBl customerbl=new CustomerBl();
 			System.out.println("Invalid choice");
 			break;
 		}
-	
-	
-	
-	
+
 }
