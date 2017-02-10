@@ -7,7 +7,7 @@ import com.project.bl.CustomerBl;
 import com.project.helper.CustomerEntry;
 
 public class MainMenu {
-	private MainMenu mainMenu = new MainMenu();
+	//private MainMenu mainMenu = new MainMenu();
 	Scanner sc = new Scanner(System.in);
 	int ch;
 	private CustomerBl customerBl = new CustomerBl();
@@ -48,10 +48,10 @@ public class MainMenu {
 			}
 			} catch (ClassNotFoundException | SQLException e1) {
 				System.out.println("Sorry, Please try again!!!!");
-				mainMenu.displayMenu();
+				displayMenu();
 				System.out.println("Enter your choice : ");
 				ch = sc.nextInt();
-				mainMenu.choice(ch);
+				choice(ch);
 			}
 			break;
 		case 2:
@@ -79,10 +79,10 @@ public class MainMenu {
 			}
 			} catch (ClassNotFoundException | SQLException e1) {
 				System.out.println("Sorry, Please try again!!!!");
-				mainMenu.displayMenu();
+				displayMenu();
 				System.out.println("Enter your choice : ");
 				ch = sc.nextInt();
-				mainMenu.choice(ch);
+			choice(ch);
 			}
 			break;
 		case 3:

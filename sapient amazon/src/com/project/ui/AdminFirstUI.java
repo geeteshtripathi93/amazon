@@ -74,7 +74,9 @@ public class AdminFirstUI {
 					System.out.println("Enter your choice : ");
 					choice(sc.nextInt());		
 				}
-
+				displayMenu();
+				System.out.println("Enter your choice : ");
+				choice(sc.nextInt());	
 				break;
 			case 3:
 				System.out.println("Enter Category Name which you want to Delete ");
@@ -101,7 +103,7 @@ public class AdminFirstUI {
 				try {
 					prodlist = adminBl.viewProduct(pcategory);
 					for (Product product1 : prodlist) {
-					System.out.println(product1.getName());		
+					System.out.println(product1);		
 				} 
 					// Choose Category
 				}
@@ -133,16 +135,20 @@ public class AdminFirstUI {
 					System.out.println("Enter your choice : ");
 					choice(sc.nextInt());		
 				}
+			displayMenu();
+			System.out.println("Enter your choice : ");
+			choice(sc.nextInt());
 				break;
 			case 6:
                       System.out.println("Enter product id to delete product:"); 
                       int pid=sc.nextInt();
-                     try{ status=adminBl.deleteProduct(pid);
+                      try{ status=adminBl.deleteProduct(pid);
                       if(status)
-          				System.out.println(" Product Added");
-          					else
-          						System.out.println("  Not Added, Please try again!!!1");
-          				} catch (SQLException | ClassNotFoundException e) {
+          			  System.out.println(" Product Deleted");
+          		      else
+          	   		  System.out.println("  Not Deleted, Please try again!!!1");
+          			    } 
+                      catch (SQLException | ClassNotFoundException e) {
           					System.out.println("Sorry, somthing went wrong!!!");
           					displayMenu();
           					System.out.println("Enter your choice : ");
@@ -187,18 +193,18 @@ public class AdminFirstUI {
                     
 				break;
 			case 9:
-        Admin admin=new Admin();
-        System.out.println("enter admin username:");
-        
-				admin.setMail(sc.next());
+				Admin admin=new Admin();
+        		System.out.println("Enter Current email : ");
+        		admin.setMail(sc.next());
 				System.out.println("enter new password");
 				admin.setPassword(sc.next());
 				try{status=	adminBl.updatePassword(admin);			
 				if(status)
-					System.out.println(" Password updated");
-						else
-							System.out.println("  Not updated, Please try again!!!1");
-					} catch (SQLException | ClassNotFoundException e) {
+				System.out.println(" Password updated");
+				else
+				System.out.println("  Not updated, Please try again!!!1");
+				}
+				catch (SQLException | ClassNotFoundException e) {
 						System.out.println("Sorry, somthing went wrong!!!");
 						displayMenu();
 						System.out.println("Enter your choice : ");
@@ -207,14 +213,16 @@ public class AdminFirstUI {
 				
 				break;
 			case 10:
-System.exit(0);
+				System.exit(0);
 				break;
 			
 			default:
 				System.out.println("Invalid choice");
 				break;
 			}
-		
+			displayMenu();
+			System.out.println("Enter your choice : ");
+			choice(sc.nextInt());
 		
 		}		
 		

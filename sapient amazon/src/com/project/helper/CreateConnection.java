@@ -12,7 +12,8 @@ public class CreateConnection {
 		// Registering Driver - Connect
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// Connect to database
-		con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "sapient@123");
+		//con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "sapient@123");
+		con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "system");
 		return con;
 	}
 

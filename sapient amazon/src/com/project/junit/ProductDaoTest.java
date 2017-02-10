@@ -26,27 +26,27 @@ public class ProductDaoTest {
 		productDao = null;
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void positiveTestAddProductId() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 10, 10);
 		assertTrue(productDao.addProduct(product));
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void negativeTestAddProductId() throws ClassNotFoundException, SQLException {
 		product = new Product(-4, "aa", "bb", 10, 10, 10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void zeroTestAddProductId() throws ClassNotFoundException, SQLException {
 		product = new Product(0, "aa", "bb", 10, 10, 10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void negativeTestAddPrice() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", -10, 10, 10);
 		assertFalse(productDao.addProduct(product));
@@ -54,14 +54,14 @@ public class ProductDaoTest {
 	}
 
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void negativeTestAddQuantity() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, -10, 10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void zeroTestAddQuantity() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 0, 10);
 		assertFalse(productDao.addProduct(product));
@@ -69,14 +69,14 @@ public class ProductDaoTest {
 	}
 
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void negativeTestAddDiscount() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 10, -10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = SQLException.class)
 	public void zeroTestAddDiscount() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 10, 0);
 		assertFalse(productDao.addProduct(product));

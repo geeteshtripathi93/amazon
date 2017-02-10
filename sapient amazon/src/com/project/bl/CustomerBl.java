@@ -65,6 +65,7 @@ public class CustomerBl {
         	System.out.println("Invalid Email ID");
         	return 0;
         }
+        System.out.println(customer); //test
 		return user.insert(customer);
 	}
 

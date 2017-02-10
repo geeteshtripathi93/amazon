@@ -39,35 +39,35 @@ public class CartUnit {
 		assertTrue(cartDao.addToCart(cartList));
 	}
 
-	@Test (expected = NullPointerException.class)
+	@Test 
 	public void testRemoveNegative() throws ClassNotFoundException, SQLException {
 		cart = new Cart(-2, 2, 20, date);
 		cartList.add(cart);
 		assertFalse(cartDao.removeFromCart(cart.getProductId(), cart.getCustomerId()));
 	}
 	
-	@Test (expected = NullPointerException.class)
+	@Test 
 	public void testRemoveNegativeTwo() throws ClassNotFoundException, SQLException {
 		cart = new Cart(2, -2, 20, date);
 		cartList.add(cart);
 		assertFalse(cartDao.removeFromCart(cart.getProductId(), cart.getCustomerId()));
 	}
 	
-	@Test (expected = NullPointerException.class)
+	@Test 
 	public void testRemovePositive() throws ClassNotFoundException, SQLException {
 		cart = new Cart(2, 2, 20, date);
 		cartList.add(cart);
 		assertTrue(cartDao.removeFromCart(cart.getProductId(), cart.getCustomerId()));
 	}
 		
-	@Test (expected = NullPointerException.class)
+	@Test
 	public void testRemoveZero() throws ClassNotFoundException, SQLException {
 		cart = new Cart(0, 2, 20, date);
 		cartList.add(cart);
 		assertFalse(cartDao.removeFromCart(cart.getProductId(), cart.getCustomerId()));
 	}
 	
-	@Test (expected = NullPointerException.class)
+	@Test 
 	public void testRemoveZeroTwo() throws ClassNotFoundException, SQLException {
 		cart = new Cart(2, 0, 20, date);
 		cartList.add(cart);
