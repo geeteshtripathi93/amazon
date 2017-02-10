@@ -26,10 +26,10 @@ public class CustomerBLTest {
 		customerBL = null;
 	}
 
-	@Test
-	public void testPositiveSignIn() throws ClassNotFoundException, SQLException {
-		assertTrue(customerBL.signIn("abc@xyz.com", "password"));
-	}
+//	@Test
+//	public void testPositiveSignIn() throws ClassNotFoundException, SQLException {
+//		assertTrue(customerBL.signIn("abc@xyz.com", "password"));
+//	}
 
 	@Test
 	public void testSignUp() {

@@ -26,10 +26,6 @@ public class AdminBLTest {
 	Category category;
 	Product product;
 	
-	private CreateConnection createCon = new CreateConnection();
-	private Connection connection = null;
-	private PreparedStatement pstmt = null;
-
 	@Before
 	public void setUp() throws Exception {
 		adminBL = new AdminBL();
@@ -44,7 +40,7 @@ public class AdminBLTest {
 	public void positiveSignIn() throws ClassNotFoundException, SQLException {
 		// customer = new Customer(1, "Tony", "Stark",
 		// "ironman@starkindustries.com", "character", "1234567890");
-		assertTrue(adminBL.signIn("abc@xyz.com", "password"));
+		assertTrue(adminBL.signIn("abc@xyz.com", "password1"));
 	}
 
 	@Test
@@ -61,17 +57,17 @@ public class AdminBLTest {
 		assertFalse(adminBL.signIn("abc@xyz.com", "passqword"));
 	}
 
-	@Test
-	public void positiveUpdatePassword() throws ClassNotFoundException,SQLException {
-		admin = new Admin("abc@xyz.com", "password1");
-		assertTrue(adminBL.updatePassword(admin));
-	}
-	
-	@Test
-	public void negativeUpdatePassword() throws ClassNotFoundException,SQLException {
-		admin = new Admin("abc@xyz.com", "passwor");
-		assertFalse(adminBL.updatePassword(admin));
-	}
+//	@Test
+//	public void positiveUpdatePassword() throws ClassNotFoundException,SQLException {
+//		admin = new Admin("abc@xyz.com", "password1");
+//		assertTrue(adminBL.updatePassword(admin));
+//	}
+//	
+//	@Test
+//	public void negativeUpdatePassword() throws ClassNotFoundException,SQLException {
+//		admin = new Admin("abc@xyz.com", "passwor");
+//		assertFalse(adminBL.updatePassword(admin));
+//	}
 
 	@Test
 	public void positiveDeleteCategory() throws ClassNotFoundException, SQLException {
@@ -140,23 +136,8 @@ public class AdminBLTest {
 	}
 	
 	@Test
-	public void testViewProduct() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdateProduct() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeleteProduct() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetAllBillDetails() {
-		fail("Not yet implemented");
+	public void testUpdateProduct() throws ClassNotFoundException, SQLException {
+		assertTrue(adminBL.updateProduct(product));
 	}
 
 }
