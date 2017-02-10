@@ -55,7 +55,10 @@ public class CustomerSecondUI {
 				
 				try {
 					list = customerbl.viewCart(customerId);//view cart
+<<<<<<< HEAD
 					System.out.println(list);
+=======
+>>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
 				} catch (ClassNotFoundException e) {
 					CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
 					customerSUI.displayMenu();

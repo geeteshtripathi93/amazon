@@ -25,7 +25,7 @@ public class AdminBL {
 	private CategoryDao category1= new CategoryDaoImpl();
 	
 	public boolean signIn(String email, String password) throws ClassNotFoundException, SQLException {
-		
+		//check email
 		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
@@ -37,7 +37,7 @@ public class AdminBL {
 			
         return false;
 	}	
-	
+	//check password length
 		public boolean updatePassword(Admin admin) throws SQLException, ClassNotFoundException{
 		if((admin.getPassword().length()<8))
 		{
