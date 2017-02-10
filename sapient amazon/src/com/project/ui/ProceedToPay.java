@@ -17,7 +17,7 @@ public class ProceedToPay {
 		Scanner sc=new Scanner(System.in);
 		int choice=sc.nextInt();
 		switch(choice){
-		case 1:
+		case 1://payment gateway calling
 			Bill bill=null;
 			CustomerBl customerBl=new CustomerBl();
 			bill= customerBl.generateBill(customerId);

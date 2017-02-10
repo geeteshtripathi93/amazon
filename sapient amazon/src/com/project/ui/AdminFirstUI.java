@@ -59,7 +59,7 @@ public class AdminFirstUI {
 				
 				
 				break;
-			case 2:
+			case 2://add new category
 				System.out.println("Enter New Category Name ");
 				try {
 					name = sc.next();
@@ -78,7 +78,7 @@ public class AdminFirstUI {
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());	
 				break;
-			case 3:
+			case 3://delete category
 				System.out.println("Enter Category Name which you want to Delete ");
 				try {
 					name = sc.next();
@@ -97,7 +97,7 @@ public class AdminFirstUI {
 				
 				break;
 				
-			case 4:
+			case 4://view category list
 				List<Product> prodlist;
 				pcategory=null;
 				try {
@@ -117,7 +117,7 @@ public class AdminFirstUI {
 				break;
 				
 				
-			case 5:
+			case 5://add product
 				
 			try{	
 				ProductEntry productentry=new ProductEntry();
@@ -139,7 +139,7 @@ public class AdminFirstUI {
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
 				break;
-			case 6:
+			case 6://delete product
                       System.out.println("Enter product id to delete product:"); 
                       int pid=sc.nextInt();
                       try{ status=adminBl.deleteProduct(pid);
@@ -155,7 +155,7 @@ public class AdminFirstUI {
           					choice(sc.nextInt());		
           				}
 				break;
-			case 7:
+			case 7://product update
 				UpdateProductEntry updateproductentry =new UpdateProductEntry();
 				
 				try{status=adminBl.updateProduct(updateproductentry.updateProduct());
@@ -173,7 +173,7 @@ public class AdminFirstUI {
 		
 				break;
 			case 8:
-				
+				//view bill list
 				List<BillDetails> billList;
 				pcategory=null;
 				try {
@@ -192,7 +192,7 @@ public class AdminFirstUI {
 				
                     
 				break;
-			case 9:
+			case 9://password update
 				Admin admin=new Admin();
         		System.out.println("Enter Current email : ");
         		admin.setMail(sc.next());
