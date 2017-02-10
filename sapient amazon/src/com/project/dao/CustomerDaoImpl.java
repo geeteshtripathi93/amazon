@@ -34,7 +34,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		pstmt.setString(5, customer.getPassword());
 		pstmt.setString(6, customer.getPhoneNumber());
 		System.out.println("test"); //test
-		int row=0;
+		int row=0; 
 		try
 		{ row = pstmt.executeUpdate();
 		}

@@ -39,7 +39,7 @@ public class Cart {
 	}
 
 	public void setProductId(int productId) {
-		this.productId = productId;
+		this.productId = productId; 
 	}
 
 	public int getQuantity() {

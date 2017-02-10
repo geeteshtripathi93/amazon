@@ -23,7 +23,7 @@ private Product product=new Product();
 		product.setPrice(sc.nextDouble());
 		System.out.println("Enter product Quantity : ");
 		product.setQuantity(sc.nextInt());
-		System.out.println("Enter product Discount : ");
+		System.out.println("Enter product Discount : "); 
 		product.setDiscount(sc.nextInt());
 		System.out.println(product);
 return product;

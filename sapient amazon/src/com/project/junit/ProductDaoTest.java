@@ -21,7 +21,7 @@ public class ProductDaoTest {
 		productDao = new ProductDaoImpl();
 	}
 
-	@After
+	@After 
 	public void tearDown() throws Exception {
 		productDao = null;
 	}

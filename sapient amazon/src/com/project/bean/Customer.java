@@ -16,7 +16,7 @@ public class Customer {
 			String phoneNumber) {
 		this.customerId = customerId;
 		this.firstName = firstName;
-		this.lastName = lastName;
+		this.lastName = lastName; 
 		this.email = email;
 		this.password = password;
 		this.phoneNumber = phoneNumber;

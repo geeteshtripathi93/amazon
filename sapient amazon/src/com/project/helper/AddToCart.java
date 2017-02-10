@@ -12,11 +12,11 @@ public class AddToCart {
 		 Scanner sc=new Scanner(System.in);
 		 List<Cart> cartList=new ArrayList<Cart>();
 		 do{
-			 System.out.println("Enter Product ID to Add to Cart\n or 0: EXIT");
+			 System.out.println("Enter Product ID to Add to Cart\n or 0: if done");
 			 int optionChosen=sc.nextInt();
 			 if(optionChosen==0)
 				 break;
-			 Cart cart=new Cart();
+			 Cart cart=new Cart(); 
 			 cart.setCustomerId(customerId);
 			 cart.setProductId(optionChosen);
 			 System.out.println("Enter Quantity");

@@ -15,7 +15,7 @@ import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerFirstUI {
 	
-	public CustomerFirstUI(int customerId) {
+	public CustomerFirstUI(int customerId) { 
 		
 		this.customerId= customerId;
 		
@@ -43,7 +43,7 @@ public class CustomerFirstUI {
 		sc=new Scanner(System.in);
 		
 		switch(choice){
-		case 1:{
+		case 1:{//view list of categories
 				try{		
 			List<Category> categorylist=customerbl.viewCategory();
 			for (Category category : categorylist) {
@@ -69,7 +69,7 @@ catch (SQLException | ClassNotFoundException e) {
 	}
 			
 			
-			case 2:
+			case 2://update customer 
 				Customer customer= new UpdateCustomerEntry().update();
 				try{	customer.setCustomerId(customerId);
 				status=customerbl.updateDetails(customer);
@@ -87,7 +87,7 @@ catch (SQLException | ClassNotFoundException e) {
 				
 			
 			
-		
+		//search category
 		case 3:System.out.println("Enter the category name you want to search: \n");
 			String category=sc.next();
 			List<Product> productlist;
@@ -105,7 +105,7 @@ catch (SQLException | ClassNotFoundException e) {
 			choice(sc.nextInt());	
 			}
 			break;
-		case 4:
+		case 4://search product
 			System.out.println("Enter the product name you want to search: \n");
 			String productname=sc.next();
 //			Product product=new Product();
@@ -120,7 +120,7 @@ catch (SQLException | ClassNotFoundException e) {
 				}
 			break;
 			
-		case 5:
+		case 5://cart list view
 			try {	List<CartDetails> cartlist;
 			
 				cartlist = customerbl.viewCart(customerId);
@@ -134,7 +134,7 @@ catch (SQLException | ClassNotFoundException e) {
 					choice(sc.nextInt());	
 					}
 				break;
-		case 6:
+		case 6://bill details list
 			try{List<BillDetails> billList;
 			billList = customerbl.getBillDetails(customerId);
 			for (BillDetails blist : billList) {
@@ -152,6 +152,9 @@ catch (SQLException | ClassNotFoundException e) {
 			System.exit(0);
 		default:
 			System.out.println("Invalid choice");
+			displayMenu();
+			System.out.println("Enter your choice : ");
+			choice(sc.nextInt());
 			break;
 		}
 		

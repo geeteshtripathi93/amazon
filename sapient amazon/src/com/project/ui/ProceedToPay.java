@@ -17,12 +17,12 @@ public class ProceedToPay {
 		Scanner sc=new Scanner(System.in);
 		int choice=sc.nextInt();
 		switch(choice){
-		case 1:
+		case 1://payment gateway calling
 			Bill bill=null;
 			CustomerBl customerBl=new CustomerBl();
 			bill= customerBl.generateBill(customerId);
 			if (bill!= null) {
-				List<BillDetails> list = customerBl.getCurrentBill(bill);
+				List<BillDetails> list = customerBl.getCurrentBill(bill); 
 				for (BillDetails billDetails : list) {
 					System.out.println(billDetails);
 					CustomerFirstUI customerFUI = new CustomerFirstUI(customerId);

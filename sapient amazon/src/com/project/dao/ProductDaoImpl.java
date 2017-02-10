@@ -79,7 +79,7 @@ public class ProductDaoImpl implements ProductDao {
 		else
 			 rs = pstmt.executeQuery();
 		while (rs.next()) {
-			int pid = rs.getInt("product_id");
+			int pid = rs.getInt("product_id"); 
 			String productname = rs.getString("product_name");
 			String category = rs.getString("product_category");
 			int productprice = rs.getInt("product_price");

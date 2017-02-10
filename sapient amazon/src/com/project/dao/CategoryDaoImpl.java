@@ -28,7 +28,7 @@ public class CategoryDaoImpl implements CategoryDao {
 			String categoryname = rs.getString("category_name");
 			category = new Category();
 			category.setCategoryName(categoryname);
-			categoryList.add(category);
+			categoryList.add(category); 
 
 		}
 		con.close();
@@ -39,9 +39,9 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public boolean insertCategory(String categoryname) throws SQLException, ClassNotFoundException {
 		con=cd.getCon();
-		pstmt = con.prepareStatement("insert into category values(?,?)");
-		pstmt.setString(1,"100");
-		pstmt.setString(2, categoryname);
+		pstmt = con.prepareStatement("insert into category values(?)");
+		
+		pstmt.setString(1, categoryname);
 		int rows = pstmt.executeUpdate();
 		con.close();
 		if (rows > 0) {

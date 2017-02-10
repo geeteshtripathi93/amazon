@@ -25,13 +25,13 @@ public class MainMenu {
 		boolean status;
 		switch (ch) {
 
-		case 1:
+		case 1://admin sign in
 				System.out.println("Enter your email id/username : ");
 				email = sc.next();
 				System.out.println("Enter your password : ");
 				password = sc.next();
 				try {
-					status =	adminBl.signIn(email, password);
+					status =	adminBl.signIn(email, password); 
 					if (status) {
 				System.out.println("signed In");
 				AdminFirstUI adminFUI= new AdminFirstUI();
@@ -54,7 +54,7 @@ public class MainMenu {
 				choice(ch);
 			}
 			break;
-		case 2:
+		case 2://customer sign in
 	
 			System.out.println("Enter your email id/username : ");
 			email = sc.next();
@@ -85,7 +85,7 @@ public class MainMenu {
 			choice(ch);
 			}
 			break;
-		case 3:
+		case 3://customer sign up
 			Customer customer= new CustomerEntry().input();
 			try {
 				customerId=customerBl.signUp(customer);

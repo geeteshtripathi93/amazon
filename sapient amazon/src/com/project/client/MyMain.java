@@ -14,7 +14,7 @@ public class MyMain {
 			menu.displayMenu();
 			System.out.println("enter choice : ");
 			int ch=sc.nextInt();
-			menu.choice(ch);
+			menu.choice(ch); 
 			System.out.println(" ");
 			System.out.println("Press 1 to continue");
 			

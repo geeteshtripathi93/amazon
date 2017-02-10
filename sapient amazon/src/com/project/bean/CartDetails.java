@@ -23,7 +23,7 @@ public class CartDetails {
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
-		this.discount = discount;
+		this.discount = discount; 
 		this.totalPrice = totalPrice;
 		this.category = category;
 		this.date = date;

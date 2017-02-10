@@ -14,7 +14,7 @@ public class CustomerEntry {
 		System.out.println("Enter Last Name : ");
 		customer.setLastName(sc.next());
 		System.out.println(" Enter Email Id : ");
-		customer.setEmail(sc.next());
+		customer.setEmail(sc.next()); 
 		System.out.println(" Enter Password : ");
 		customer.setPassword(sc.next());
 		System.out.println(" Enter Phone Number : ");

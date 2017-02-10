@@ -15,7 +15,7 @@ public class Product {
 		this.productId = productId;
 		this.name = name;
 		this.category = category;
-		this.price = price;
+		this.price = price; 
 		this.quantity = quantity;
 		this.discount = discount;
 	}

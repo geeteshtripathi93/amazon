@@ -84,7 +84,7 @@ public class CustomerBl {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(customer.getEmail());
         if(!m.matches()){
-        	System.out.println("Invalid Email ID");
+        	System.out.println("Invalid Email ID"); 
         	return false;
         }
         return user.update(customer);

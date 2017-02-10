@@ -25,11 +25,13 @@ public class CartDaoImpl implements CartDao {
 		for(Cart cart:cartList){
 			
 		pstmt = connection.prepareStatement("INSERT INTO CART VALUES(?,?,?,?)");
-		pstmt.setInt(1, cart.getCustomerId());
-		pstmt.setInt(2, cart.getProductId());
-		pstmt.setInt(3, cart.getQuantity());
-		pstmt.setDate(4, cart.getCartDate());
+		pstmt.setInt(1,cart.getCustomerId());
+		pstmt.setInt(2,cart.getProductId());
+		pstmt.setInt(3,cart.getQuantity());
+		pstmt.setDate(4,cart.getCartDate());
 		count++;
+System.out.println(cart);//test
+		pstmt.executeQuery();
 		}
 		if(count==cartList.size())
 			return true;
@@ -57,7 +59,7 @@ public class CartDaoImpl implements CartDao {
 		int pid, quantity, discount;
 		Statement stmt=connection.createStatement();
 		String sql = "SELECT  product_id,product_quantity,cart_date FROM CART WHERE CUSTOMER_ID="+customerId;
-		connection = createCon.getCon();
+	
 		rs= stmt.executeQuery(sql);
 		ResultSet product = null;
 		while(rs.next()){
@@ -66,12 +68,25 @@ public class CartDaoImpl implements CartDao {
 			date=rs.getDate("cart_date");  
 			product= stmt.executeQuery("select product_name, product_category,product_price,"
 			+ "product_discount from product_info where product_id="+pid);
-	   		double price = product.getDouble(3);
+	   		while(product.next()){double price = product.getDouble(3);
 	   		discount=  product.getInt(4);
-  			double totalPrice = (quantity*price)*(100-discount)/100;			
-			listOfItem.add(new CartDetails(pid, product.getString(1), price, quantity, discount, totalPrice, product.getString(2),date));
-		}
-		
+  			double totalPrice = (quantity*price)*(100-discount)/100;
+  			String pn=product.getString(1);
+  			String cat=product.getString(2);
+  			
+  			CartDetails cd=new CartDetails();
+  			cd.setPrice(totalPrice);
+  			cd.setDiscount(discount);
+  			cd.setProductId(pid);
+  			cd.setCategory(cat);
+  			cd.setQuantity(quantity);
+  			cd.setDate(date);
+  			cd.setTotalPrice(totalPrice);
+  			cd.setProductName(pn);
+  			listOfItem.add(cd);
+			//listOfItem.add(new CartDetails(pid, product.getString(1), price, quantity, discount, totalPrice, product.getString(2),date));	
+			}}
+		System.out.println(listOfItem);
 		return listOfItem;
 	}
 
