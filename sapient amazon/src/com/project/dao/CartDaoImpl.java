@@ -18,38 +18,41 @@ public class CartDaoImpl implements CartDao {
 	 private Connection connection =null;
 	 private ResultSet rs = null;
 	 private PreparedStatement pstmt = null;
+	 // Method to add the product to customer cart
 	@Override
 	public boolean addToCart(List<Cart> cartList) throws ClassNotFoundException, SQLException {
 		int count=0;
 		connection = createCon.getCon();
-		for(Cart cart:cartList){
-			
 		pstmt = connection.prepareStatement("INSERT INTO CART VALUES(?,?,?,?)");
+		for(Cart cart:cartList){
 		pstmt.setInt(1,cart.getCustomerId());
 		pstmt.setInt(2,cart.getProductId());
 		pstmt.setInt(3,cart.getQuantity());
 		pstmt.setDate(4,cart.getCartDate());
-		count++;
-System.out.println(cart);//test
 		pstmt.executeQuery();
+		count++;
+		connection.close();
 		}
 		if(count==cartList.size())
 			return true;
 		else
 		return false;
 	}
-
+	//Method to remove the product from cart
 	@Override
 	public boolean removeFromCart(int productId,int customerId) throws SQLException, ClassNotFoundException{
 		connection = createCon.getCon();
-		Statement stmt=connection.createStatement();
-		String sql = "DELETE FROM cart" +"WHERE product_id ="+productId+"AND"+"customer_Id="+customerId;
-		int rows=stmt.executeUpdate(sql);
+		pstmt = connection.prepareStatement("DELETE FROM cart WHERE product_id =? AND customer_Id=?");
+		pstmt.setInt(1, productId);
+		pstmt.setInt(2, customerId);
+		int rows=pstmt.executeUpdate();
+		connection.close();
 		if(rows>0){
 			return true;
 		}
 			return false;
 		} 
+	// method to return the list of product in customer cart
 	@Override
 	public List<CartDetails> viewCart(int customerId) throws SQLException, ClassNotFoundException {
 		
@@ -58,22 +61,22 @@ System.out.println(cart);//test
 		Date date;
 		int pid, quantity, discount;
 		Statement stmt=connection.createStatement();
-		String sql = "SELECT  product_id,product_quantity,cart_date FROM CART WHERE CUSTOMER_ID="+customerId;
-	
-		rs= stmt.executeQuery(sql);
+		pstmt = connection.prepareStatement("SELECT  product_id,product_quantity,cart_date FROM CART WHERE CUSTOMER_ID=?");
+		pstmt.setInt(1, customerId);
+		rs= pstmt.executeQuery();
 		ResultSet product = null;
 		while(rs.next()){
-			pid=(int)rs.getLong("product_id");
-			quantity=((int)(rs.getLong("product_quantity")));
+			pid=rs.getInt("product_id");
+			quantity=(rs.getInt("product_quantity"));
 			date=rs.getDate("cart_date");  
 			product= stmt.executeQuery("select product_name, product_category,product_price,"
 			+ "product_discount from product_info where product_id="+pid);
-	   		while(product.next()){double price = product.getDouble(3);
-	   		discount=  product.getInt(4);
+	   		product.next();
+	   		String pn=product.getString("product_name");
+  			String cat=product.getString("product_category");
+  			double price =(int) product.getInt("product_price");
+	   		discount=  product.getInt("product_discount");
   			double totalPrice = (quantity*price)*(100-discount)/100;
-  			String pn=product.getString(1);
-  			String cat=product.getString(2);
-  			
   			CartDetails cd=new CartDetails();
   			cd.setPrice(totalPrice);
   			cd.setDiscount(discount);
@@ -84,9 +87,8 @@ System.out.println(cart);//test
   			cd.setTotalPrice(totalPrice);
   			cd.setProductName(pn);
   			listOfItem.add(cd);
-			//listOfItem.add(new CartDetails(pid, product.getString(1), price, quantity, discount, totalPrice, product.getString(2),date));	
-			}}
-		System.out.println(listOfItem);
+  		}
+		connection.close();
 		return listOfItem;
 	}
 

@@ -23,17 +23,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		rs = statement.executeQuery("SELECT MAX(CUSTOMER_ID) FROM CUSTOMER_INFO");
 		rs.next();
 		int cId = rs.getInt(1);
-		System.out.println("Cid - "+ cId); //  test
 		customer.setCustomerId((cId + 1));
 		pstmt = connection.prepareStatement("INSERT INTO CUSTOMER_INFO VALUES(?,?,?,?,?,?)");
 		pstmt.setInt(1, customer.getCustomerId());
-		System.out.println("cid incremernt "+customer.getCustomerId());
 		pstmt.setString(2, customer.getFirstName());
 		pstmt.setString(3, customer.getLastName());
 		pstmt.setString(4, customer.getEmail());
 		pstmt.setString(5, customer.getPassword());
 		pstmt.setString(6, customer.getPhoneNumber());
-		System.out.println("test"); //test
 		int row=0; 
 		try
 		{ row = pstmt.executeUpdate();
@@ -42,7 +39,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		{
 			System.out.println(e);
 		}
-		System.out.println("row-"+row); //test
 		if (row > 0){
 			connection.close();
 			return (cId+1);
@@ -69,7 +65,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public boolean update(Customer customer) throws ClassNotFoundException, SQLException {
 		connection = createCon.getCon();
 		pstmt = connection.prepareStatement(
-				"UPDATE CUSTOMER_INFO SET FIRST_NAME=?, LAST_NAME=?,PASSWORD=? , PHONE_NUMBER=? WHERE MAIL=?");
+				"UPDATE CUSTOMER_INFO SET FIRST_NAME=?,LAST_NAME=?,PASSWORD=?,PHONE_NUMBER=? WHERE EMAIL=?");
 		pstmt.setString(1, customer.getFirstName());
 		pstmt.setString(2, customer.getLastName());
 		pstmt.setString(3, customer.getPassword());
@@ -83,7 +79,4 @@ public class CustomerDaoImpl implements CustomerDao {
 			return false;
 
 	}
-
-	
-
 }

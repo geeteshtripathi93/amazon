@@ -27,7 +27,7 @@ public class MainMenu {
 
 		case 1://admin sign in
 				System.out.println("Enter your email id/username : ");
-				email = sc.next();
+				email = sc.next().toUpperCase();
 				System.out.println("Enter your password : ");
 				password = sc.next();
 				try {
@@ -40,7 +40,7 @@ public class MainMenu {
 				adminFUI.choice(sc.nextInt());
 					} else {
 						System.out.println("Sorry, Please try again!!!!");
-				System.out.println("INVALID OPTION");
+				
 				displayMenu();
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());
@@ -57,7 +57,7 @@ public class MainMenu {
 		case 2://customer sign in
 	
 			System.out.println("Enter your email id/username : ");
-			email = sc.next();
+			email = sc.next().toUpperCase();
 			System.out.println("Enter your password : ");
 			password = sc.next();
 			try {

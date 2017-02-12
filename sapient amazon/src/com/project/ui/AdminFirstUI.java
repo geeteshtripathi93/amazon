@@ -1,6 +1,7 @@
 package com.project.ui;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,12 +10,11 @@ import com.project.bean.BillDetails;
 import com.project.bean.Category;
 import com.project.bean.Product;
 import com.project.bl.AdminBL;
-import com.project.bl.CustomerBl;
 import com.project.helper.ProductEntry;
 import com.project.helper.UpdateProductEntry;
 
 public class AdminFirstUI {
-	private AdminFirstUI currentUI = this;
+	
 	private Scanner sc=null;
 	private AdminBL adminBl = new AdminBL();
 		public void displayMenu(){
@@ -36,7 +36,7 @@ public class AdminFirstUI {
 			sc=new Scanner(System.in);
 			String name;
 			String pcategory;
-			String product;
+	
 			
 			switch(choice){
 			
@@ -51,29 +51,37 @@ public class AdminFirstUI {
 					// Choose Category
 				}
 				catch (SQLException | ClassNotFoundException e) {
-				System.out.println("Sorry, somthing went wrong!!!");
+				System.out.println("Sorry, somthing went wrong!!!"+e);
 				displayMenu();
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());	
 				}
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 				
 				
 				break;
 			case 2://add new category
 				System.out.println("Enter New Category Name ");
 				try {
-					name = sc.next();
+					name = sc.next().toUpperCase();
 					status=adminBl.addCategory(name);
 					if(status)
 				System.out.println(name+" Category Added");
 					else
 						System.out.println(name+"  Not Added, Please try again!!!1");
 				} catch (ClassNotFoundException | SQLException e) {
-					System.out.println("Sorry, somthing went wrong!!!");
+					System.out.println("Sorry, somthing went wrong!!!"+e);
 					displayMenu();
 					System.out.println("Enter your choice : ");
 					choice(sc.nextInt());		
 				}
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 				displayMenu();
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());	
@@ -81,17 +89,20 @@ public class AdminFirstUI {
 			case 3://delete category
 				System.out.println("Enter Category Name which you want to Delete ");
 				try {
-					name = sc.next();
+					name = sc.next().toUpperCase();
 					status=adminBl.deleteCategory(name);
 					if(status)
 						System.out.println(name+" Category Deleted");
 							else
 								System.out.println(name+"  Not Deleted, Please try again!!!1");
 				} catch (ClassNotFoundException | SQLException e) {
-					System.out.println("Sorry, somthing went wrong!!!");
+					System.out.println("Sorry, somthing went wrong!!!"+e);
 					displayMenu();
 					System.out.println("Enter your choice : ");
 					choice(sc.nextInt());		
+				}
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
 				}
 
 				
@@ -108,12 +119,15 @@ public class AdminFirstUI {
 					// Choose Category
 				}
 				catch (SQLException | ClassNotFoundException e) {
-				System.out.println("Sorry, somthing went wrong!!!");
+				System.out.println("Sorry, somthing went wrong!!!"+e);
 				displayMenu();
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());	
 				}
-				
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 				break;
 				
 				
@@ -130,11 +144,15 @@ public class AdminFirstUI {
 					else
 						System.out.println("  Not Added, Please try again!!!1");
 				} catch (ClassNotFoundException|SQLException e) {
-					System.out.println("Sorry, somthing went wrong!!!");
+					System.out.println("Sorry, somthing went wrong!!!"+e);
 					displayMenu();
 					System.out.println("Enter your choice : ");
 					choice(sc.nextInt());		
 				}
+			catch(InputMismatchException e){
+				System.out.println("Please Enter Correct data!!!");
+			}
+
 			displayMenu();
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
@@ -149,11 +167,15 @@ public class AdminFirstUI {
           	   		  System.out.println("  Not Deleted, Please try again!!!1");
           			    } 
                       catch (SQLException | ClassNotFoundException e) {
-          					System.out.println("Sorry, somthing went wrong!!!");
+          					System.out.println("Sorry, somthing went wrong!!!"+e);
           					displayMenu();
           					System.out.println("Enter your choice : ");
           					choice(sc.nextInt());		
           				}
+                      catch(InputMismatchException e){
+                    		System.out.println("Please Enter Correct data!!!");
+                    	}
+
 				break;
 			case 7://product update
 				UpdateProductEntry updateproductentry =new UpdateProductEntry();
@@ -164,12 +186,15 @@ public class AdminFirstUI {
 						else
 							System.out.println("  Not updated, Please try again!!!1");
 					} catch (SQLException | ClassNotFoundException e) {
-						System.out.println("Sorry, somthing went wrong!!!");
+						System.out.println("Sorry, somthing went wrong!!!"+e);
 						displayMenu();
 						System.out.println("Enter your choice : ");
 						choice(sc.nextInt());		
 					}
-		
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 		
 				break;
 			case 8:
@@ -184,18 +209,21 @@ public class AdminFirstUI {
 					// Choose Category
 				}
 				catch (SQLException | ClassNotFoundException e) {
-				System.out.println("Sorry, somthing went wrong!!!");
+				System.out.println("Sorry, somthing went wrong!!!"+e);
 				displayMenu();
 				System.out.println("Enter your choice : ");
 				choice(sc.nextInt());	
 				}
-				
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
                     
 				break;
 			case 9://password update
 				Admin admin=new Admin();
         		System.out.println("Enter Current email : ");
-        		admin.setMail(sc.next());
+        		admin.setMail(sc.next().toUpperCase());
 				System.out.println("enter new password");
 				admin.setPassword(sc.next());
 				try{status=	adminBl.updatePassword(admin);			
@@ -205,25 +233,39 @@ public class AdminFirstUI {
 				System.out.println("  Not updated, Please try again!!!1");
 				}
 				catch (SQLException | ClassNotFoundException e) {
-						System.out.println("Sorry, somthing went wrong!!!");
+						System.out.println("Sorry, somthing went wrong!!!"+e);
 						displayMenu();
 						System.out.println("Enter your choice : ");
 						choice(sc.nextInt());		
 					}	
-				
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 				break;
 			case 10:
-				System.exit(0);
+				try{
+				MainMenu menu = new MainMenu();
+				menu.displayMenu();
+				System.out.println("enter choice : ");
+				int ch=sc.nextInt();
+				menu.choice(ch);
 				break;
-			
+				}
+				catch(InputMismatchException e){
+					System.out.println("Please Enter Correct data!!!");
+				}
+
 			default:
 				System.out.println("Invalid choice");
 				break;
 			}
+			
 			displayMenu();
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
-		
+			
+			
 		}		
 		
 }

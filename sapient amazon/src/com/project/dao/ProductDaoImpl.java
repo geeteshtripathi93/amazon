@@ -8,16 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 import com.project.bean.Product;
 import com.project.helper.CreateConnection;
+import com.project.helper.DisplayErrorMessage;
 
 public class ProductDaoImpl implements ProductDao {
-	CreateConnection cd = new CreateConnection();
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	Product product =null;
+	private CreateConnection cd = new CreateConnection();
+	private Connection con = null;
+	private PreparedStatement pstmt = null;
+	private Product product =null;
+	private ResultSet rs=null;
 	
-
+  
+	
+	// Method to add new product details in databse.
 	public boolean addProduct(Product product) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
+		String s =product.getCategory();
+		pstmt=  con.prepareStatement("SELECT COUNT(*) FROM CATEGORY WHERE CATEGORY_NAME=?");
+		pstmt.setString(1, s);
+		rs = pstmt.executeQuery();
+		rs.next();
+		// verifying the entered product category exist or not
+		// if not then display error message.
+		if(rs.getInt(1)==0){
+			DisplayErrorMessage.displayError(product.getCategory()+" Category Does not exit,please enter correct one!!!");
+			return false;
+		}
 		pstmt = con.prepareStatement("insert into product_info  values(?,?,?,?,?,?)");
 		pstmt.setInt(1, product.getProductId());
 		pstmt.setString(2, product.getName());
@@ -25,8 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 		pstmt.setDouble(4, product.getPrice());
 		pstmt.setInt(5, product.getQuantity());
 		pstmt.setInt(6, product.getDiscount());
-
-		int rows = pstmt.executeUpdate();
+		int rows = pstmt.executeUpdate(); // entering product details.
 		con.close();
 		if (rows > 0) {
 			return true;
@@ -35,6 +49,8 @@ public class ProductDaoImpl implements ProductDao {
 		return false;
 	}
 
+	// Method to delete the particular product by using product id .
+	
 	@Override
 	public Boolean deleteProduct(int pid) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
@@ -44,9 +60,12 @@ public class ProductDaoImpl implements ProductDao {
 		if (rows > 0) {
 			return true;
 		}
+		
 		return false;
 	}
-
+	
+	// Method to update the product details such as quantity, price, discount by using product id.
+	
 	@Override
 	public boolean updateProduct(Product product) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
@@ -65,7 +84,8 @@ public class ProductDaoImpl implements ProductDao {
 		else
 			return false;
 	}
-
+	// method to display all product of particular category
+	// and if category string is null then display all product from all category.
 	@Override
 	public List<Product> viewProduct(String pcategory) throws SQLException, ClassNotFoundException {
 		List<Product> prodList = new ArrayList<Product>();
@@ -73,7 +93,7 @@ public class ProductDaoImpl implements ProductDao {
 		Statement stmt = con.createStatement();
 		pstmt = con.prepareStatement("select * from product_info where product_category=?");
 		pstmt.setString(1, pcategory);
-		ResultSet rs =null;
+		rs =null;
 		if(pcategory== null)
 			 rs = stmt.executeQuery("select * from product_info");
 		else
@@ -90,18 +110,19 @@ public class ProductDaoImpl implements ProductDao {
 			product.setCategory(category);
 			product.setPrice(productprice);
 			product.setQuantity(productquantity);
-			prodList.add(product);	
+			prodList.add(product);	// generating list of product.
 		}
 		con.close();
-		return prodList;
+		return prodList; // returning back product list to Business Logic layer.
 
 	}
-
+	// searching product by using product name.
 	@Override
 	public Product searchProductByName(String productName) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("select * from product_info where product_name= " +productName );
+		pstmt = con.prepareStatement("select * from product_info where product_name=?");
+		pstmt.setString(1, productName);
+		ResultSet rs = pstmt.executeQuery( );
 		while (rs.next()) {
 			int pid = rs.getInt("product_id");
 			String productname = rs.getString("product_name");

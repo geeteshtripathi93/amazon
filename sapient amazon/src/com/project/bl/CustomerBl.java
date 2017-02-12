@@ -20,13 +20,9 @@ import com.project.dao.CustomerDao;
 import com.project.dao.CustomerDaoImpl;
 import com.project.dao.ProductDao;
 import com.project.dao.ProductDaoImpl;
-import com.project.helper.AddToCart;
-import com.project.helper.CustomerEntry;
-import com.project.helper.UpdateCustomerEntry;
 
 public class CustomerBl {
-			
-	private int customerId;
+				
 	private CustomerDao user = new CustomerDaoImpl();
 	private CartDao cart= new CartDaoImpl();	
 	private CategoryDao category1= new CategoryDaoImpl();

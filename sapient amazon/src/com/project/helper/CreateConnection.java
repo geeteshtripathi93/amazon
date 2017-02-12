@@ -13,7 +13,8 @@ public class CreateConnection {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		// Connect to database
 		con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "sapient@123");
-	//	con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "system"); 
+		//con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521", "system", "system"); 
+	 // before executing , make the sapient connection as a comment and make new connection according to yours ip and id 
 		return con;
 	}
 

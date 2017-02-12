@@ -1,9 +1,11 @@
 package com.project.ui;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.project.bean.Cart;
 import com.project.bean.CartDetails;
 import com.project.bean.Category;
 import com.project.bean.Customer;
@@ -27,83 +29,66 @@ public class CustomerSecondUI {
 		System.out.println("Press 1/2/3");
 	}
 
-	public boolean choice(int ch) throws SQLException {
+	public  void choice(int ch) throws SQLException,ClassNotFoundException,InputMismatchException {
 		
 		Scanner sc = new Scanner(System.in);
+		
 		boolean status = false;
 		switch (ch) {
+		
 		case 1:
-			int index = 1;
-			try { //category name input list output
+			 //category name input list output
 				System.out.println("Enter category name to view products : ");
-				String category=sc.next();
+				String category=sc.next().toUpperCase();
 				List<Product> productlist = customerbl.viewProduct(category);
+				if(productlist.isEmpty()){
+					System.out.println("NO Product is available in this category!!!!");
+					break;
+					}
 			for (Product product : productlist) {
-				System.out.println((index++) + " " + product.getName());
+				System.out.println(product);
 			}
-			AddToCart add=new AddToCart();//add to cart 
-			status = customerbl.addToCart(add.addingToCart(customerId));
-			} catch (ClassNotFoundException e) {
-				CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
-				customerSUI.displayMenu();
-				System.out.println("Enter your choice : ");
-				customerSUI.choice(sc.nextInt());
-			}
+				AddToCart add=new AddToCart();//add to cart
+				ArrayList<Cart> cartList = (ArrayList<Cart>) add.addingToCart(customerId);
+			if(cartList.isEmpty())
+				break;
+				status = customerbl.addToCart(cartList);
 			if(status){ 
-				System.out.println("Added To Cart.");
-				List<CartDetails> list=new ArrayList<CartDetails>();
-				
-				try {
+					List<CartDetails> list=new ArrayList<CartDetails>();
 					list = customerbl.viewCart(customerId);//view cart
-<<<<<<< HEAD
-					System.out.println(list);
-=======
->>>>>>> branch 'master' of https://github.com/geeteshtripathi93/amazon.git
-				} catch (ClassNotFoundException e) {
-					CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
-					customerSUI.displayMenu();
-					System.out.println("Enter your choice : ");
-					customerSUI.choice(sc.nextInt());
-				}
-				for (CartDetails cartDetails : list) {
-					System.out.println(cartDetails);
-				}
-				// call pay ui
-				ProceedToPay paymentUI = new ProceedToPay();
-				paymentUI.display();
-				try {
+					if(!list.isEmpty()){
+					System.out.println("....YOUR CART DETAILS....\n");
+					for (CartDetails cartDetails : list) {
+						System.out.println(cartDetails);
+					}
+					}
+					else{
+						System.out.println("....YOUR CART IS EMPTY....\n");
+					}
+					// call payment  ui
+					ProceedToPay paymentUI = new ProceedToPay();
+					paymentUI.display();
+
 					paymentUI.payOption(customerId);//payment
-				} catch (ClassNotFoundException e) {
-					CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
-					customerSUI.displayMenu();
-					System.out.println("Enter your choice : ");
-					 status=customerSUI.choice(sc.nextInt());
-					 
 				}
-			}
-				else{
+				else
 					System.out.println("Sorrry, somthing went wrong!!!!");
-					CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
-					customerSUI.displayMenu();
-					System.out.println("Enter your choice : ");
-					customerSUI.choice(sc.nextInt());
-				}
-			return true;
-		case 2:
-			return true;
-			
+			break;			
+		case 2 :
+			break;
 		case 3:
-			System.exit(0);
+			MainMenu menu = new MainMenu();
+			menu.displayMenu();
+			System.out.println("enter choice : ");
+			 ch=sc.nextInt();
+			menu.choice(ch);
+			break;
 		default:
 			System.out.println("INVALID OPTION");
 			displayMenu();
 			System.out.println("Enter your choice : ");
 			choice(sc.nextInt());
-		}
-		CustomerSecondUI customerSUI = new CustomerSecondUI(customerId);
-		customerSUI.displayMenu();
-		System.out.println("Enter your choice : ");
-		customerSUI.choice(sc.nextInt());
-		return false;
-	}
+		}	
+		
+}
 }

@@ -22,14 +22,17 @@ public class ProceedToPay {
 			CustomerBl customerBl=new CustomerBl();
 			bill= customerBl.generateBill(customerId);
 			if (bill!= null) {
-				List<BillDetails> list = customerBl.getCurrentBill(bill); 
-				for (BillDetails billDetails : list) {
+				//displaying current bill
+				System.out.println("Before displaying current bill detailes");
+				List<BillDetails> list = customerBl.getCurrentBill(bill);
+				System.out.println("displaying current bill");
+				for (BillDetails billDetails : list) 
 					System.out.println(billDetails);
 					CustomerFirstUI customerFUI = new CustomerFirstUI(customerId);
 					customerFUI.displayMenu();
 					System.out.println("Enter your Choice : ");
 					customerFUI.choice(sc.nextInt());
-				}
+				
 				
 			} else {
 				display();
@@ -40,7 +43,12 @@ public class ProceedToPay {
 		case 2:
 			return false;
 		case 3:
-			System.exit(0);
+			MainMenu menu = new MainMenu();
+			menu.displayMenu();
+			System.out.println("enter choice : ");
+			int ch=sc.nextInt();
+			menu.choice(ch);
+			break;
 		default:
 			display();
 			System.out.println("Enter your Choice : ");
