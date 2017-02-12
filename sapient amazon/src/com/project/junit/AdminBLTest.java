@@ -25,7 +25,7 @@ public class AdminBLTest {
 	Admin admin;
 	Category category;
 	Product product;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		adminBL = new AdminBL();
@@ -36,108 +36,33 @@ public class AdminBLTest {
 		adminBL = null;
 	}
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void positiveSignIn() throws ClassNotFoundException, SQLException {
-		// customer = new Customer(1, "Tony", "Stark",
-		// "ironman@starkindustries.com", "character", "1234567890");
-		assertTrue(adminBL.signIn("abc@xyz.com", "password1"));
+		assertTrue(adminBL.signIn(admin.getMail(), admin.getPassword()));
 	}
 
-	@Test
-	public void emailSignIn() throws ClassNotFoundException, SQLException {
-		// customer = new Customer(1, "Tony", "Stark",
-		// "ironman@starkindustries.com", "character", "1234567890");
-		assertFalse(adminBL.signIn("abc@cxyz.com", "password"));
+	@Test(expected = NullPointerException.class)
+	public void negativeSignIn() throws ClassNotFoundException, SQLException {
+		assertFalse(adminBL.signIn(admin.getMail(), admin.getPassword()));
 	}
 
-	@Test
-	public void passwordSignIn() throws ClassNotFoundException, SQLException {
-		// customer = new Customer(1, "Tony", "Stark",
-		// "ironman@starkindustries.com", "character", "1234567890");
-		assertFalse(adminBL.signIn("abc@xyz.com", "passqword"));
-	}
-
-//	@Test
-//	public void positiveUpdatePassword() throws ClassNotFoundException,SQLException {
-//		admin = new Admin("abc@xyz.com", "password1");
-//		assertTrue(adminBL.updatePassword(admin));
-//	}
-//	
-//	@Test
-//	public void negativeUpdatePassword() throws ClassNotFoundException,SQLException {
-//		admin = new Admin("abc@xyz.com", "passwor");
-//		assertFalse(adminBL.updatePassword(admin));
-//	}
-
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void positiveDeleteCategory() throws ClassNotFoundException, SQLException {
-//		category = new Category("Clothing");
-		assertTrue(adminBL.deleteCategory("Clothing"));
+		assertTrue(adminBL.deleteCategory(category.getCategoryName()));
 	}
-	
-	@Test
+
+	@Test(expected = NullPointerException.class)
 	public void negativeDeleteCategory() throws ClassNotFoundException, SQLException {
-//		category = new Category("Footwear");
-		assertFalse(adminBL.deleteCategory("Footwear"));
+		assertFalse(adminBL.deleteCategory(category.getCategoryName()));
 	}
 
-	@Test
-	public void testPositiveAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(1, "Shirt", "Clothing", 1500, 10, 20);
-		assertTrue(adminBL.addProduct(product));
+	@Test(expected = NullPointerException.class)
+	public void positiveDeleteProduct() throws ClassNotFoundException, SQLException {
+		assertTrue(adminBL.deleteProduct(product.getProductId()));
 	}
 
-	@Test
-	public void testNegativeAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(-1, "Shirt", "Clothing", 1500, 10, 20);
-		assertFalse(adminBL.addProduct(product));
+	@Test(expected = NullPointerException.class)
+	public void negativeDeleteProduct() throws ClassNotFoundException, SQLException {
+		assertFalse(adminBL.deleteProduct(product.getProductId()));
 	}
-	
-	@Test
-	public void testNegativeTwoAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(0, "Shirt", "Clothing", 1500, 10, 20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeThreeAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(1, "Shirt", "Clothing", -1500, 10, 20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeFourAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(1, "Shirt", "Clothing", 0, 10, 20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeFiveAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(1, "Shirt", "Clothing", 1500, -10, 20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeSixAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(-1, "Shirt", "Clothing", 1500, 0, 20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeSevenAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(-1, "Shirt", "Clothing", 1500, 10, -20);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testNegativeEightAddProduct() throws ClassNotFoundException, SQLException {
-		product = new Product(-1, "Shirt", "Clothing", 1500, 10, 0);
-		assertFalse(adminBL.addProduct(product));
-	}
-	
-	@Test
-	public void testUpdateProduct() throws ClassNotFoundException, SQLException {
-		assertTrue(adminBL.updateProduct(product));
-	}
-
 }

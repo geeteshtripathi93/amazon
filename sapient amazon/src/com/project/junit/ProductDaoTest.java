@@ -12,7 +12,7 @@ import com.project.bean.Product;
 import com.project.dao.ProductDaoImpl;
 
 public class ProductDaoTest {
-	
+
 	ProductDaoImpl productDao;
 	Product product;
 
@@ -21,7 +21,7 @@ public class ProductDaoTest {
 		productDao = new ProductDaoImpl();
 	}
 
-	@After 
+	@After
 	public void tearDown() throws Exception {
 		productDao = null;
 	}
@@ -38,7 +38,7 @@ public class ProductDaoTest {
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
-	
+
 	@Test(expected = SQLException.class)
 	public void zeroTestAddProductId() throws ClassNotFoundException, SQLException {
 		product = new Product(0, "aa", "bb", 10, 10, 10);
@@ -53,14 +53,13 @@ public class ProductDaoTest {
 		System.out.println("Product id can't be negative");
 	}
 
-
 	@Test(expected = SQLException.class)
 	public void negativeTestAddQuantity() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, -10, 10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
-	
+
 	@Test(expected = SQLException.class)
 	public void zeroTestAddQuantity() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 0, 10);
@@ -68,14 +67,13 @@ public class ProductDaoTest {
 		System.out.println("Product id can't be negative");
 	}
 
-
 	@Test(expected = SQLException.class)
 	public void negativeTestAddDiscount() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 10, -10);
 		assertFalse(productDao.addProduct(product));
 		System.out.println("Product id can't be negative");
 	}
-	
+
 	@Test(expected = SQLException.class)
 	public void zeroTestAddDiscount() throws ClassNotFoundException, SQLException {
 		product = new Product(4, "aa", "bb", 10, 10, 0);

@@ -1,4 +1,5 @@
 package com.project.dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,23 +15,22 @@ public class ProductDaoImpl implements ProductDao {
 	private CreateConnection cd = new CreateConnection();
 	private Connection con = null;
 	private PreparedStatement pstmt = null;
-	private Product product =null;
-	private ResultSet rs=null;
-	
-  
-	
+	private Product product = null;
+	private ResultSet rs = null;
+
 	// Method to add new product details in databse.
 	public boolean addProduct(Product product) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
-		String s =product.getCategory();
-		pstmt=  con.prepareStatement("SELECT COUNT(*) FROM CATEGORY WHERE CATEGORY_NAME=?");
+		String s = product.getCategory();
+		pstmt = con.prepareStatement("SELECT COUNT(*) FROM CATEGORY WHERE CATEGORY_NAME=?");
 		pstmt.setString(1, s);
 		rs = pstmt.executeQuery();
 		rs.next();
 		// verifying the entered product category exist or not
 		// if not then display error message.
-		if(rs.getInt(1)==0){
-			DisplayErrorMessage.displayError(product.getCategory()+" Category Does not exit,please enter correct one!!!");
+		if (rs.getInt(1) == 0) {
+			DisplayErrorMessage
+					.displayError(product.getCategory() + " Category Does not exit,please enter correct one!!!");
 			return false;
 		}
 		pstmt = con.prepareStatement("insert into product_info  values(?,?,?,?,?,?)");
@@ -45,12 +45,12 @@ public class ProductDaoImpl implements ProductDao {
 		if (rows > 0) {
 			return true;
 		}
-	
+
 		return false;
 	}
 
 	// Method to delete the particular product by using product id .
-	
+
 	@Override
 	public Boolean deleteProduct(int pid) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
@@ -60,12 +60,13 @@ public class ProductDaoImpl implements ProductDao {
 		if (rows > 0) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	// Method to update the product details such as quantity, price, discount by using product id.
-	
+
+	// Method to update the product details such as quantity, price, discount by
+	// using product id.
+
 	@Override
 	public boolean updateProduct(Product product) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
@@ -84,8 +85,10 @@ public class ProductDaoImpl implements ProductDao {
 		else
 			return false;
 	}
+
 	// method to display all product of particular category
-	// and if category string is null then display all product from all category.
+	// and if category string is null then display all product from all
+	// category.
 	@Override
 	public List<Product> viewProduct(String pcategory) throws SQLException, ClassNotFoundException {
 		List<Product> prodList = new ArrayList<Product>();
@@ -93,36 +96,37 @@ public class ProductDaoImpl implements ProductDao {
 		Statement stmt = con.createStatement();
 		pstmt = con.prepareStatement("select * from product_info where product_category=?");
 		pstmt.setString(1, pcategory);
-		rs =null;
-		if(pcategory== null)
-			 rs = stmt.executeQuery("select * from product_info");
+		rs = null;
+		if (pcategory == null)
+			rs = stmt.executeQuery("select * from product_info");
 		else
-			 rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 		while (rs.next()) {
-			int pid = rs.getInt("product_id"); 
+			int pid = rs.getInt("product_id");
 			String productname = rs.getString("product_name");
 			String category = rs.getString("product_category");
 			int productprice = rs.getInt("product_price");
 			int productquantity = rs.getInt("product_quantity");
-			product= new Product();
+			product = new Product();
 			product.setProductId(pid);
 			product.setName(productname);
 			product.setCategory(category);
 			product.setPrice(productprice);
 			product.setQuantity(productquantity);
-			prodList.add(product);	// generating list of product.
+			prodList.add(product); // generating list of product.
 		}
 		con.close();
 		return prodList; // returning back product list to Business Logic layer.
 
 	}
+
 	// searching product by using product name.
 	@Override
 	public Product searchProductByName(String productName) throws SQLException, ClassNotFoundException {
 		con = cd.getCon();
 		pstmt = con.prepareStatement("select * from product_info where product_name=?");
 		pstmt.setString(1, productName);
-		ResultSet rs = pstmt.executeQuery( );
+		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			int pid = rs.getInt("product_id");
 			String productname = rs.getString("product_name");
@@ -130,13 +134,13 @@ public class ProductDaoImpl implements ProductDao {
 			String category = rs.getString("product_category");
 			int productprice = rs.getInt("product_price");
 			int productquantity = rs.getInt("product_quantity");
-			product= new Product();
+			product = new Product();
 			product.setProductId(pid);
 			product.setName(productname);
 			product.setCategory(category);
 			product.setPrice(productprice);
 			product.setQuantity(productquantity);
-			
+
 		}
 		con.close();
 		return product;

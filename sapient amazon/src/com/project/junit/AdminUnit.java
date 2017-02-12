@@ -9,15 +9,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.project.bean.Admin;
 import com.project.bean.Customer;
 import com.project.dao.AdminDao;
 import com.project.dao.AdminDaoImpl;
 
 public class AdminUnit {
-	
+
 	AdminDaoImpl adminDao;
-	Customer customer;
-	
+	Admin admin;
+
 	@Before
 	public void setUp() throws Exception {
 		adminDao = new AdminDaoImpl();
@@ -28,21 +29,36 @@ public class AdminUnit {
 		adminDao = null;
 	}
 
-	@Test
-	public void positiveTestValidation() throws ClassNotFoundException, SQLException {
-//		customer = new Customer(4, "aa", "ll", "hsh@abc.com", "password", "5111614205");
-		assertTrue(adminDao.validation("abc@xyz.com", "password"));
+	// @Test
+	// public void positiveTestValidation() throws ClassNotFoundException,
+	// SQLException {
+	// admin = new Admin("admin", "password");
+	// assertTrue(adminDao.validation("admin", "password"));
+	// }
+	//
+	// @Test
+	// public void emailTestValidation() throws ClassNotFoundException,
+	// SQLException {
+	// admin = new Admin("admin", "password");
+	// assertFalse(adminDao.validation("hsh", "password"));
+	// }
+	//
+	// @Test
+	// public void passwordTestValidation() throws ClassNotFoundException,
+	// SQLException {
+	// admin = new Admin("admin", "password");
+	// assertFalse(adminDao.validation("abc@xyz.com", "1password"));
+	// }
+
+	@Test(expected = NullPointerException.class)
+	public void positiveUpdate() throws SQLException, ClassNotFoundException {
+		admin.setPassword("password2");
+		assertTrue(adminDao.update(admin));
 	}
 
-	@Test
-	public void emailTestValidation() throws ClassNotFoundException, SQLException {
-//		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "5614204545");
-		assertFalse(adminDao.validation("hsh", "password"));
-	}
-
-	@Test
-	public void passwordTestValidation() throws ClassNotFoundException, SQLException {
-//		customer = new Customer(4, "aa", "ll", "hsh", "ghsg", "5614204545");
-		assertFalse(adminDao.validation("abc@xyz.com", "1password"));
+	@Test(expected = NullPointerException.class)
+	public void negativeUpdate() throws SQLException, ClassNotFoundException {
+		admin.setPassword("passwor");
+		assertFalse(adminDao.update(admin));
 	}
 }

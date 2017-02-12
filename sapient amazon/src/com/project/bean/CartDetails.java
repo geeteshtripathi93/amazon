@@ -11,11 +11,11 @@ public class CartDetails {
 	private double totalPrice;
 	private String category;
 	private Date date;
-	
+
 	public CartDetails() {
-	
+
 	}
-	
+
 	public CartDetails(int productId, String productName, double price, int quantity, int discount, double totalPrice,
 			String category, Date date) {
 		super();
@@ -23,7 +23,7 @@ public class CartDetails {
 		this.productName = productName;
 		this.price = price;
 		this.quantity = quantity;
-		this.discount = discount; 
+		this.discount = discount;
 		this.totalPrice = totalPrice;
 		this.category = category;
 		this.date = date;
@@ -100,5 +100,4 @@ public class CartDetails {
 		this.date = date;
 	}
 
-	
 }

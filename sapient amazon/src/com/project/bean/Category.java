@@ -4,6 +4,7 @@ public class Category {
 	public Category() {
 
 	}
+
 	private String CategoryName;
 
 	public String getCategoryName() {
@@ -23,8 +24,5 @@ public class Category {
 	public String toString() {
 		return "Category [CategoryName=" + CategoryName + "]";
 	}
-	
-	
-	
-	
+
 }

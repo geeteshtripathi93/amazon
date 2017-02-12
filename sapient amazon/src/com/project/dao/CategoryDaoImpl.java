@@ -21,14 +21,14 @@ public class CategoryDaoImpl implements CategoryDao {
 	public List<Category> viewCategory() throws SQLException, ClassNotFoundException {
 
 		List<Category> categoryList = new ArrayList<Category>();
-		con=cd.getCon();
+		con = cd.getCon();
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery("select * from category");
 		while (rs.next()) {
 			String categoryname = rs.getString("category_name");
 			category = new Category();
 			category.setCategoryName(categoryname);
-			categoryList.add(category); 
+			categoryList.add(category);
 
 		}
 		con.close();
@@ -38,9 +38,9 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public boolean insertCategory(String categoryname) throws SQLException, ClassNotFoundException {
-		con=cd.getCon();
+		con = cd.getCon();
 		pstmt = con.prepareStatement("insert into category values(?)");
-		
+
 		pstmt.setString(1, categoryname);
 		int rows = pstmt.executeUpdate();
 		con.close();
@@ -53,11 +53,11 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public boolean deleteCategory(String categoryname) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
-		con=cd.getCon();
+		con = cd.getCon();
 		pstmt = con.prepareStatement("delete from category where category_name=?");
-		pstmt.setString(1,categoryname);
-		
-		int rows = pstmt.executeUpdate();	
+		pstmt.setString(1, categoryname);
+
+		int rows = pstmt.executeUpdate();
 		if (rows > 0) {
 			return true;
 		}

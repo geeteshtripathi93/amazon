@@ -25,7 +25,7 @@ public class AdminDaoImpl implements AdminDao {
 		pstmt.setString(2, password);
 		int row = pstmt.executeUpdate();
 		connection.close();
-		if (row > 0) 
+		if (row > 0)
 			return true;
 		else
 			return false;

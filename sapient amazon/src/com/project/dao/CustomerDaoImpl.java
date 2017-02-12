@@ -31,19 +31,16 @@ public class CustomerDaoImpl implements CustomerDao {
 		pstmt.setString(4, customer.getEmail());
 		pstmt.setString(5, customer.getPassword());
 		pstmt.setString(6, customer.getPhoneNumber());
-		int row=0; 
-		try
-		{ row = pstmt.executeUpdate();
-		}
-		catch(Exception e)
-		{
+		int row = 0;
+		try {
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
 			System.out.println(e);
 		}
-		if (row > 0){
+		if (row > 0) {
 			connection.close();
-			return (cId+1);
-		}
-		else
+			return (cId + 1);
+		} else
 			return 0;
 
 	}
@@ -54,7 +51,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		pstmt = connection.prepareStatement("SELECT Customer_id FROM CUSTOMER_INFO WHERE EMAIL=? AND PASSWORD=?");
 		pstmt.setString(1, email);
 		pstmt.setString(2, password);
-		rs=pstmt.executeQuery();
+		rs = pstmt.executeQuery();
 		rs.next();
 		int customerId = rs.getInt(1);
 		connection.close();

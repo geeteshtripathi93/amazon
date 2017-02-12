@@ -26,7 +26,6 @@ public class BillDaoImpl implements BillDao {
 	// method to generate bill according to the products are in cart for particular customer
 	@Override
 	public Bill generateBill(int customerId) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
 		List<BillHistory> billRecords = new LinkedList<BillHistory>();
 		BillHistory bDetail;
 		connection = createCon.getCon();
@@ -214,9 +213,9 @@ public class BillDaoImpl implements BillDao {
 			totalPrice = ((rs2.getInt("product_price")) * (rs2.getInt("product_quantity")))
 					* (100 - rs2.getInt("product_discount") / 100);
 			billdetail.setTotalPrice(totalPrice);
-		
+
 			billList.add(billdetail);
-		
+
 		}
 		return billList;
 	}

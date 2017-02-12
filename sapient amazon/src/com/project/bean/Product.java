@@ -7,15 +7,16 @@ public class Product {
 	private double price;
 	private int quantity;
 	private int discount;
-	
-	public Product(){
-		
-	}	
+
+	public Product() {
+
+	}
+
 	public Product(int productId, String name, String category, double price, int quantity, int discount) {
 		this.productId = productId;
 		this.name = name;
 		this.category = category;
-		this.price = price; 
+		this.price = price;
 		this.quantity = quantity;
 		this.discount = discount;
 	}
@@ -67,11 +68,11 @@ public class Product {
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + ", category=" + category + ", price=" + price
 				+ ", quantity=" + quantity + ", discount=" + discount + "]";
 	}
 
-	
 }

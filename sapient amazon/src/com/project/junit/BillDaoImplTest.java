@@ -22,7 +22,7 @@ public class BillDaoImplTest {
 	Bill bill;
 	String str = "2017-02-08";
 	Date date = Date.valueOf(str);
-	
+
 	@Before
 	public void setUp() throws Exception {
 		billDao = new BillDaoImpl();
@@ -44,29 +44,16 @@ public class BillDaoImplTest {
 		customer = new Customer(1, "Sherlock", "Holmes", "221B", "SH", "221221");
 		assertNotEquals(2, customer.getCustomerId());
 	}
-	
+
 	@Test
 	public void positiveGetBillDetails() {
 		customer = new Customer(1, "Sherlock", "Holmes", "221B", "SH", "221221");
 		assertEquals(1, customer.getCustomerId());
 	}
-	
+
 	@Test
 	public void negativeGetBillDetails() {
 		customer = new Customer(1, "Sherlock", "Holmes", "221B", "SH", "221221");
 		assertNotEquals(2, customer.getCustomerId());
 	}
-
-	@Test
-	public void positiveGetCurrentBill() {
-		bill = new Bill(1, 1, date);
-		assertEquals(1, bill.getBillId());
-	}
-
-	@Test
-	public void negativeGetCurrentBill() {
-		bill = new Bill(1, 1, date);
-		assertNotEquals(2, bill.getBillId());
-	}
-
 }
